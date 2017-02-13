@@ -4,6 +4,8 @@ var express            = require('express'),
      app               = express(),
      bodyParser        = require('body-parser'),
      mongoose          = require('mongoose');
+var Resource = require('resourcejs');
+
 
 
 //use configure app
@@ -25,8 +27,8 @@ db.once('open', function() {
 
 
 //use midleware
-app.use(bodyParser()); ;
 app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.json()); ;
 app.use(express.static(__dirname + '/client'));
 //app.use(express.static(__dirname + '/fonts'));
 // app.use(express.static(__dirname + '/server'));
@@ -47,14 +49,44 @@ app.get('/', function(req, res) {
 });
 
 //posle izbaci i rute podeli po oblastima u fajlove
-var VlasnikController = require('./server/controllers/VlasnikContrl');; 
+var VlasnikController = require('./server/controllers/VlasnikContrl'); 
 app.get('/api/vlasnik', VlasnikController.list);
 app.post('/api/vlasnik', VlasnikController.create); 
 
-var PosaoController = require('./server/controllers/PosaoContrl');; 
-app.get('/api/posao', PosaoController.list);
-app.post('/api/posao', PosaoController.create); 
+  var PosaoController = require('./server/controllers/PosaoContrl');
+  app.get('/api/posao', PosaoController.list);
+  app.post('/api/posao', PosaoController.create); 
 
+var DrzavaController = require('./server/controllers/sfDrzaveContrl');
+app.get('/api/drzave', DrzavaController.list);
+app.post('/api/drzave', DrzavaController.create);
+
+//var DrzavaModel = require('./server/models/sfDrzave'); 
+
+//var PosaoModel = require('./server/models/sfPoslovi'); 
+
+//Resource(app, '/api', 'posao', PosaoModel).rest();
+
+//var ResourceDrzava = mongoose.model('Resource', DrzavaModel);
+// var resource =  Resource(app, '/api', 'drzave', DrzavaModel).get(
+//  {
+//    after: function(req, res, next) {
+// //      res.json(res);
+//   //    res.send(JSON);
+//       console.log("Get was just called!");
+//     }
+//   }).put().post().index();
+//console.log(resource.swagger());
+
+//  Resource(app, 'api/', 'drzave', DrzavaModel).get({
+
+//     after: function(req, res, next) {
+//         res.resource.item.title = 'I am changing!!';
+//         res.error = null;
+//         next();
+//     }
+
+//  });
 
 
 // app.get('/', function(req, res) {

@@ -125,7 +125,7 @@ angular.module("ZADRUGA.controllers", [])
             $scope.posao.push(result); 
 
             $scope.Naziv='';
-            $scope.SelectSprema = ''
+            $scope.SelectSprema = '';
             $scope.Skola='';
             $scope.Sifra=''  ; 
             $scope.Sifra1='' ;
@@ -155,6 +155,68 @@ angular.module("ZADRUGA.controllers", [])
 
 
 }])
+.controller("drzaveCtrl", ["$scope", "$rootScope","$resource", function ($scope, $rootScope, $resource) {
+
+    var DRZAVA = $resource('/api/drzave');
+  
+    DRZAVA.query(function (results) {
+        $scope.drzave = results;
+      //  debugger;
+      //  $scope.Ime = results.Ime;
+    }); 
+     
+    $scope.createDrzavu = function () {
+        $scope.loginLoading = true;
+
+//debugger;
+        var DrzaveRes = new DRZAVA();
+
+//debugger;
+        DrzaveRes.Naziv = $scope.Naziv;
+        DrzaveRes.KodDrzave = $scope.KodDrzave;
+        DrzaveRes.NameUser='System';
+        DrzaveRes.Opis = $scope.Opis;
+            
+       
+        DrzaveRes.$save(function (result) {
+
+           // debugger;
+            if(result.errors){
+                alert("Error Error");
+                $scope.ShowError(result.errors);
+            }else{
+            $scope.drzave.push(result); 
+
+            $scope.Naziv='';
+            $scope.KodDrzave = '';
+            $scope.NameUser='';
+            $scope.Opis='';
+           //debugger;
+            }
+            $scope.loginLoading = false;
+
+        });
+    } 
+    
+    $scope.title = "Drzave";
+
+    $scope.ShowError = function(terror){
+        debugger;
+        if(terror){
+            if(terror.StepenSS){
+                alert("Greska " + terror.StepenSS.message);
+            }
+
+
+        }
+
+    }
+       
+
+
+
+}])
+//drzaveCtrl
 
 .controller("helpCtrl", ["$scope", "$rootScope", function ($scope, $rootScope) {
 

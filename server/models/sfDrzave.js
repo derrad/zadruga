@@ -1,4 +1,6 @@
 var mongoose = require('mongoose');
+//Resource(app, '', 'drzave', ResourceDrzava).rest();
+//var Resource = require('resourcejs');
 
  var Schema = mongoose.Schema,
      ID  = Schema.ObjectId;
@@ -6,7 +8,7 @@ var mongoose = require('mongoose');
 var sfDrzave = new Schema({
    KodDrzave:{type:String,required: [true, 'Kod je obavezan !!!']},
    Naziv : { type: String, required: [true, 'Naziv je obavezan !!!'] },
-   EuClan: {type:boolean, default:true},
+   EuClan: {type:Boolean, default:false},
    Opis  :{ type: String },
    NameUser: {type:String}
 
@@ -17,6 +19,17 @@ var sfDrzave = new Schema({
 { 
     retainKeyOrder: true 
 }
+
 );
 
-module.exports = mongoose.model('sfDrzave', sfDrzave);
+sfDrzave.pre('save', function(next) {
+   // do stuff
+   console.log("PRE SAVE");
+   next();
+ });
+
+module.exports = mongoose.model('sfDrzave', sfDrzave); //mongoose.model('sfDrzave', sfDrzave);
+
+// {
+//     Schema :"sfDrzave"
+// }

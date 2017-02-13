@@ -7,7 +7,7 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "dev": "nodemon server.js"
   },
-   "repository": {
+  "repository": {
     "type": "git",
     "url": "https://github.com/derrad/zadruga.git"
   },
@@ -17,7 +17,7 @@
   ],
   "author": "derrad",
   "license": "MIT",
-    "bugs": {
+  "bugs": {
     "url": "https://github.com/derrad/zadruga.git/issues"
   },
   "dependencies": {
@@ -25,7 +25,8 @@
     "ejs": "^2.5.2",
     "express": "^4.14.0",
     "mongoose": "^4.6.8",
-    "mongoose-relationship": "^0.1.5"
+    "mongoose-relationship": "^0.1.5",
+    "resourcejs": "^1.6.1"
   },
   "devDependencies": {
     "nodemon": "^1.11.0"

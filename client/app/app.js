@@ -43,6 +43,11 @@
               templateUrl: "app/view/sifarnik/view-posao.html",
               controller: "posaoCtrl"
           })
+          .state("drzave", {
+              url: "/drzave",
+              templateUrl: "app/view/sifarnik/view-drzave.html",
+              controller: "drzaveCtrl"
+          })
             .state("/", {
               url: "/",
               templateUrl: "app/view/view-home.html",

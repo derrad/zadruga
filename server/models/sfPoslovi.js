@@ -1,4 +1,5 @@
 var mongoose = require('mongoose');
+var Resource = require('resourcejs');
 
  var Schema = mongoose.Schema,
      ID  = Schema.ObjectId;
@@ -23,4 +24,7 @@ var sfPoslovi = new Schema({
 }
  );
 
+
+//var resourcePosao =  Resource(app, '/api', 'drzave', DrzavaModel).rest();
+//module.exports = mongoose.model('Resource', sfPoslovi);
 module.exports = mongoose.model('sfPoslovi', sfPoslovi);
