@@ -28,7 +28,9 @@ sfDrzave.pre('save', function(next) {
    next();
  });
 
-module.exports = mongoose.model('sfDrzave', sfDrzave); //mongoose.model('sfDrzave', sfDrzave);
+var collectionName = 'sfDrzave';
+
+module.exports = mongoose.model('sfDrzave', sfDrzave,collectionName); //mongoose.model('sfDrzave', sfDrzave);
 
 // {
 //     Schema :"sfDrzave"

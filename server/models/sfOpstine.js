@@ -27,4 +27,7 @@ var sfOpstine = new Schema({
 sfOpstine.plugin(relationship, { relationshipPathName:'Drzava' });
 var child = new sfOpstine({Drzava:sfDrzave._id});
 
+
+
+
 module.exports = mongoose.model('sfOpstine', sfOpstine);
