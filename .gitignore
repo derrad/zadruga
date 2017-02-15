@@ -37,6 +37,7 @@ node_modules
 #dist
 #public/__build__/**
 #.webpack.json
+komande.txt
 
 
 #build/

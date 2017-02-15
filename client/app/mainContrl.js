@@ -168,10 +168,9 @@ angular.module("ZADRUGA.controllers", [])
     $scope.createDrzavu = function () {
         $scope.loginLoading = true;
 
-//debugger;
         var DrzaveRes = new DRZAVA();
 
-//debugger;
+
         DrzaveRes.Naziv = $scope.Naziv;
         DrzaveRes.KodDrzave = $scope.KodDrzave;
         DrzaveRes.NameUser='System';
@@ -203,9 +202,82 @@ angular.module("ZADRUGA.controllers", [])
     $scope.ShowError = function(terror){
         debugger;
         if(terror){
-            if(terror.StepenSS){
-                alert("Greska " + terror.StepenSS.message);
+            // if(terror.StepenSS){
+            //     alert("Greska " + terror.StepenSS.message);
+            // }
+
+            alert("Greska drzave !!!")
+        }
+
+    }
+       
+
+
+
+}])
+
+
+
+//parametarCtrl
+.controller("parametarCtrl", ["$scope", "$rootScope","$resource", function ($scope, $rootScope, $resource) {
+
+    var PARAMETAR = $resource('/api/parametar');
+  
+    PARAMETAR.query(function (results) {
+        $scope.parametari = results;
+      //  debugger;
+      //  $scope.Ime = results.Ime;
+    }); 
+     
+    $scope.createParam = function () {
+        $scope.loginLoading = true;
+
+//debugger;
+        var ParamRes = new PARAMETAR();
+
+//debugger;
+        ParamRes.Naziv = $scope.Naziv;
+        ParamRes.Koristi = true;
+        ParamRes.VredString=$scope.VredString;
+        ParamRes.VredNumeric=$scope.VredNumeric;
+        ParamRes.Opis = $scope.Opis;
+        ParamRes.NameUser = "System";
+            
+       
+        ParamRes.$save(function (result) {
+
+           // debugger;
+            if(result.errors){
+                alert("Error Error");
+                $scope.ShowError(result.errors);
+            }else
+            {
+            debugger;
+            $scope.parametari.push(result); 
+
+            $scope.Naziv = "";
+            $scope.Koristi = false;
+            $scope.VredString="";
+            $scope.VredNumeric="";
+            $scope.Opis = "";
+            $scope.NameUser = "";
+
+
+           //debugger;
             }
+            $scope.loginLoading = false;
+
+        });
+    } 
+    
+    $scope.title = "Parametri";
+
+    $scope.ShowError = function(terror){
+        debugger;
+        if(terror){
+            
+          alert("Greska parametri !!!");
+         
 
 
         }
@@ -216,8 +288,6 @@ angular.module("ZADRUGA.controllers", [])
 
 
 }])
-//drzaveCtrl
-
 .controller("helpCtrl", ["$scope", "$rootScope", function ($scope, $rootScope) {
 
         $scope.titleHelp = "HELP";

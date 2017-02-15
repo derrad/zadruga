@@ -61,6 +61,11 @@ var DrzavaController = require('./server/controllers/sfDrzaveContrl');
 app.get('/api/drzave', DrzavaController.list);
 app.post('/api/drzave', DrzavaController.create);
 
+
+var ParamController = require('./server/controllers/apParametarContrl');
+app.get('/api/parametar', ParamController.list);
+app.post('/api/parametar', ParamController.create);
+
 //var DrzavaModel = require('./server/models/sfDrzave'); 
 
 //var PosaoModel = require('./server/models/sfPoslovi'); 

@@ -48,6 +48,11 @@
               templateUrl: "app/view/sifarnik/view-drzave.html",
               controller: "drzaveCtrl"
           })
+         .state("parametar", {
+              url: "/parametar",
+              templateUrl: "app/view/opcije/view-parametar.html",
+              controller: "parametarCtrl"
+          })
             .state("/", {
               url: "/",
               templateUrl: "app/view/view-home.html",
