@@ -21,6 +21,7 @@ db.once('open', function() {
   // we're connected!
   console.log("conect to mongose");
 });
+//ssss
 
 // mongoose.on('error', console.error.bind(console, 'connection error:'));
 // mongoose.once('open', function() {
