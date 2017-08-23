@@ -15,7 +15,6 @@ mongoose.connect('mongodb://pera:171296@ds153637.mlab.com:53637/omzadruga');
 //
 //mongodb://<pera>:<171296>@ds153637.mlab.com:53637/omzadruga
 
-
 var db = mongoose.connection;
 db.on('error', console.error.bind(console, 'connection error:'));
 db.once('open', function() {
