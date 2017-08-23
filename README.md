@@ -5,3 +5,4 @@ Idemo sa lokala nesto mi ne prabacuje na server
 Zasto nece da pusta u kolekciju koju ja hocu, nego pravi novu sa s na kraju
 
 Prebacio sam projekt - druga lokacija, promenio sam serversku varijablu
+
