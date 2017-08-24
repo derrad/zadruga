@@ -6,3 +6,5 @@ Zasto nece da pusta u kolekciju koju ja hocu, nego pravi novu sa s na kraju
 
 Prebacio sam projekt - druga lokacija, promenio sam serversku varijablu
 
+Ponovo ga vracam server bio sam ga skinuo i radi lokalno na web serveru
+

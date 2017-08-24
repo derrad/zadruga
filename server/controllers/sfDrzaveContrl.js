@@ -14,6 +14,7 @@ module.exports.create = function (req, res) {
  //   error.CustomError ="Nisam ni otisao na server";
  //    res.json(error); 
 //  }
+
   posao.save(function (err, result) {
       console.log("Usao u save drzave");
      debugger;

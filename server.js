@@ -10,8 +10,8 @@ var Resource = require('resourcejs');
 
 //use configure app
 mongoose.Promise = global.Promise;
-//mongoose.connect('mongodb://localhost:27017/zadruga'); 
-mongoose.connect('mongodb://pera:171296@ds153637.mlab.com:53637/omzadruga'); 
+//mongoose.connect('mongodb://localhost:27017/zadruga'); 'ovo sam dodao jer je bilo upozorenje i nasao na kako se ispravlja
+mongoose.connect('mongodb://pera:171296@ds153637.mlab.com:53637/omzadruga',{ useMongoClient: true }); 
 //
 //mongodb://<pera>:<171296>@ds153637.mlab.com:53637/omzadruga
 
@@ -21,7 +21,7 @@ db.once('open', function() {
   // we're connected!
   console.log("conect to mongose");
 });
-//ssss
+
 
 // mongoose.on('error', console.error.bind(console, 'connection error:'));
 // mongoose.once('open', function() {
