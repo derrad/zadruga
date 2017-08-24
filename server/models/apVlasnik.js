@@ -37,8 +37,8 @@ var apTelefVlasnik = new Schema({
 
 
 var apVlasnik = new Schema({ 
-    ZiroVlasnik: [apZiroVlasnik] ,
-    TelefVlasnik: [apTelefVlasnik] ,
+    ZiroVlasnik:  [{Naziv:{type:String,required: [true, 'Naziv je obavezan !!!']},Racun:String,Glavni:Boolean,Opis:String}] ,
+    TelefVlasnik: [{Naziv:String,Telefon:String,Glavni:Boolean,Opis:String}] ,
     Ime: { type: String, required: [true, 'Ime vlasnika je obavezno !!!'] },
     Adresa:{ type: String},
     Mesto:{ type: String},
