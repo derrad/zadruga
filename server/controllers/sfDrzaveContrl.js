@@ -3,19 +3,19 @@ var Drzava = require('../models/sfDrzave');
 
 module.exports.create = function (req, res) {
  // var error;
-  var posao = new Drzava(req.body);
-//  posao.pre('save', function(next) {
+  var drzava = new Drzava(req.body);
+//  drzava.pre('save', function(next) {
 //   // do stuff
 //   console.log("PRE SAVE");
 //   next();
 // });
-//  error = posao.validateSync();
+//  error = drzava.validateSync();
 //  if(error){
  //   error.CustomError ="Nisam ni otisao na server";
  //    res.json(error); 
 //  }
 
-  posao.save(function (err, result) {
+drzava.save(function (err, result) {
       console.log("Usao u save drzave");
      debugger;
       if(err){
@@ -29,7 +29,7 @@ module.exports.create = function (req, res) {
 
 
 module.exports.list = function (req, res) {
-  console.log("Usao u list drzave");
+  console.log("Usao u list drzave - tu sam");
   Drzava.find({}, function (err, results) {
     //console.log( results.toString());
     res.json(results);

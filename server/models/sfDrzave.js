@@ -11,7 +11,6 @@ var sfDrzave = new Schema({
    EuClan: {type:Boolean, default:false},
    Opis  :{ type: String },
    NameUser: {type:String}
-
 },
 {
  timestamps: { createdAt: 'created_at' }

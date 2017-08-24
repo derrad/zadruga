@@ -44,3 +44,21 @@ var sfPartnerKontakt = new Schema({
     retainKeyOrder: true 
 }
 );
+
+
+var sfPartner = new Schema({
+    Naziv : { type: String, required: [true, 'Naziv je obavezan !!!'] },
+    Ptt:{type:String},
+    Opis  :{ type: String },
+    NameUser: {type:String}
+
+},
+{
+    timestamps: { createdAt: 'created_at' }
+},
+{ 
+    retainKeyOrder: true 
+}
+);
+
+module.exports = mongoose.model('sfPartner', sfPartner);
