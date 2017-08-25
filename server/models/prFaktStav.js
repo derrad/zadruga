@@ -3,13 +3,12 @@ var relationship = require("mongoose-relationship");
 var Zadrugar = require('./server/models/sfZadrugar');
 var Poslovi = require('./server/models/sfPoslovi');
 var UputStav = require('./server/models/prUputStav');
-
-
+var Zaglavlje = require('./server/models/prFaktDok');
 var Schema = mongoose.Schema,
 ID  = Schema.ObjectId;
 
 var prFaktStav = new Schema({
-    FaktDokID:{ type: Number,default:0}, // ubaci relaciju ka zaglavlju dokumenta
+    FaktDokID:{ type:Schema.ObjectId, ref:"prFaktDok", childPath:"childFaktDok"}, // ubaci relaciju ka zaglavlju dokumenta
     UputStavID:{type:Schema.ObjectId, ref:"prUputDok", childPath:"childUputStav" }, //ovde ide relacija na zaglavlje dokumenta
     IDZadrugar:{ type: Number,default:0},
     Rbr:{ type: Number,default:1},
@@ -78,6 +77,8 @@ var chilPoslovi = new sfPoslovi({Poslovi:sfPoslovi._id});
 prUputStav.plugin(relationship, { relationshipPathName:'UputStavID' });
 var childUputStav = new prUputStav({UputStav:prUputStav._id});
 
+prUputStav.plugin(relationship, { relationshipPathName:'FaktDokID' });
+var childFaktDok = new prFaktDok({Zaglavlje:prFaktDok._id});
 
 
 

@@ -57,13 +57,18 @@ var VlasnikController = require('./server/controllers/VlasnikContrl');
 app.get('/api/vlasnik', VlasnikController.list);
 app.post('/api/vlasnik', VlasnikController.create); 
 
-  var PosaoController = require('./server/controllers/PosaoContrl');
-  app.get('/api/posao', PosaoController.list);
-  app.post('/api/posao', PosaoController.create); 
+  // var PosaoController = require('./server/controllers/PosaoContrl');
+  // app.get('/api/posao', PosaoController.list);
+  // app.post('/api/posao', PosaoController.create); 
 
-var DrzavaController = require('./server/controllers/sfDrzaveContrl');
-app.get('/api/drzave', DrzavaController.list);
-app.post('/api/drzave', DrzavaController.create);
+var DrzaveRoute = require('./server/Route/DrzaveRouters')
+var PosaoRoute = require('./server/Route/PosaoRouters')
+
+app.use('/', [DrzaveRoute,PosaoRoute])
+
+// var DrzavaController = require('./server/controllers/sfDrzaveContrl');
+// app.get('/api/drzave', DrzavaController.list);
+// app.post('/api/drzave', DrzavaController.create);
 
 
 var ParamController = require('./server/controllers/apParametarContrl');
