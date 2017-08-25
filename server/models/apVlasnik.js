@@ -6,7 +6,7 @@ var mongoose = require('mongoose');
 var apZiroVlasnik = new Schema({
      Naziv   : { type: String, required: [true,'Naziv je obavezan !!!'] },
      Racun   : { type: String, required: [true,'Racun je obavezan !!!'] },
-     Glavni  : {type:boolean, default:false},
+     Glavni  : {type:Boolean, default:false},
      Opis    : { type: String },
      NameUser: {type:String}
 },
@@ -22,7 +22,7 @@ var apZiroVlasnik = new Schema({
 var apTelefVlasnik = new Schema({
      Naziv : { type: String, required: [true, 'Naziv je obavezan !!!'] },
      Telefon: { type: String, required: [true, 'Telefon je obavezan !!!'] },
-     Glavni  : {type:boolean, default:false},
+     Glavni  : {type:Boolean, default:false},
      Opis    : { type: String },
      NameUser: {type:String}
 },
@@ -37,8 +37,9 @@ var apTelefVlasnik = new Schema({
 
 
 var apVlasnik = new Schema({ 
-    ZiroVlasnik:  [{Naziv:{type:String,required: [true, 'Naziv je obavezan !!!']},Racun:String,Glavni:Boolean,Opis:String}] ,
-    TelefVlasnik: [{Naziv:String,Telefon:String,Glavni:Boolean,Opis:String}] ,
+     Glavni  : {type:Boolean, default:false},
+     ZiroVlasnik:  [{Naziv:{type:String,required: [true, 'Naziv je obavezan !!!']},Racun:{type:String,required: [true, 'Racun je obavezan !!!']},Glavni:{type:Boolean, default:false},Opis:String}] ,
+    TelefVlasnik: [{Naziv:{type:String,required: [true, 'Naziv je obavezan !!!']},Telefon:{type:String,required: [true, 'Telefon je obavezan !!!']},Glavni:{type:Boolean, default:false},Opis:String}] ,
     Ime: { type: String, required: [true, 'Ime vlasnika je obavezno !!!'] },
     Adresa:{ type: String},
     Mesto:{ type: String},

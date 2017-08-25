@@ -5,7 +5,6 @@ var Partner = require('./server/models/sfPartneri');
 var Stavke = require('./server/models/prUputStav');
 
 
-
 var Schema = mongoose.Schema,
 ID  = Schema.ObjectId;
 

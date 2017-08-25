@@ -2,6 +2,7 @@ var mongoose = require('mongoose');
 var relationship = require("mongoose-relationship");
 var Zadrugar = require('./server/models/sfZadrugar');
 var Poslovi = require('./server/models/sfPoslovi');
+var Zaglavlje = require('./server/models/prUputDok');
 
 
 
@@ -9,12 +10,12 @@ var Schema = mongoose.Schema,
 ID  = Schema.ObjectId;
 
 var prUputStav = new Schema({
-    UputDokID:{ type: Number,default:0}, //ovde ide relacija na zaglavlje dokumenta
+    UputDokID:{type:Schema.ObjectId, ref:"prUputDok", childPath:"childDok" }, //ovde ide relacija na zaglavlje dokumenta
     IDZadrugar:{ type: Number,default:0},
     Rbr:{ type: Number,default:1},
     ZadrugarID: {type:Schema.ObjectId, ref:"sfZadrugar", childPath:"childZadrugar" },
     TipZadrugar:{type : String, default : 'Ucenik',required: [true, 'Tip je obavezan !!!'],enum:["Ucenik","Nezaposlen"]},
-    PosloviID:{type:Schema.ObjectId, ref:"sfPoslovi", childPath:"chilPoslovi" },
+    PosloviID:{type:Schema.ObjectId, ref:"sfPoslovi", childPath:"childPoslovi" },
     UkupZarada:{ type: Number,default:0},
     OdDatuma:{type:Date, default: Date.now},
     DoDatuma:{type:Date, default: Date.now},
@@ -37,7 +38,10 @@ prUputStav.plugin(relationship, { relationshipPathName:'ZadrugarID' });
 var childZadrugar = new sfZadrugar({Zadrugar:sfZadrugar._id});
 
 prUputStav.plugin(relationship, { relationshipPathName:'PosloviID' });
-var chilPoslovi = new sfPoslovi({Poslovi:sfPoslovi._id});
+var childPoslovi = new sfPoslovi({Poslovi:sfPoslovi._id});
+
+prUputStav.plugin(relationship, { relationshipPathName:'UputDokID' });
+var childDok = new prUputDok({Zaglavlje:prUputDok._id});
 
 
 

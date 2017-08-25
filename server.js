@@ -49,7 +49,7 @@ app.set('view engine', 'ejs');
 // });
 
 app.get('/', function(req, res) {
-    res.render('pages/index');
+     res.render('pages/index');
 });
 
 //posle izbaci i rute podeli po oblastima u fajlove
