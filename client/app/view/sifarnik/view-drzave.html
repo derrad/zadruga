@@ -8,6 +8,11 @@
 
     </div>
 <div class="panel-body panel-info ">
+    <div   ng-repeat="item in ERROR" ng-value="item" class="text-danger" >
+        <p>{{ERROR.KodDrzave.message}}</p>
+        <p>{{ERROR.Naziv.message}}</p>
+        
+    </div>
   
     <form role="form" ng-submit="createDrzavu()">
         <div class="form-group">

@@ -1,10 +1,14 @@
 //Server za zadrugu nodejs
-
+var http = require('http');
 var express            = require('express'),
      app               = express(),
      bodyParser        = require('body-parser'),
      mongoose          = require('mongoose');
 var Resource = require('resourcejs');
+var favicon = require('serve-favicon');
+var path = require('path');
+var methodOverride = require('method-override');
+var errorHandler = require('errorhandler');
 
 
 
@@ -30,14 +34,32 @@ db.once('open', function() {
 // });
 
 
+
 //use midleware
+app.use(favicon(path.join(__dirname, '/client/favicon.ico')))
+//app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')))
+
 app.use(bodyParser.urlencoded({ extended: true }));
-app.use(bodyParser.json()); ;
+app.use(bodyParser.json()); 
+app.use(methodOverride());
+// app.use(logErrors)
+// app.use(clientErrorHandler)
+// app.use(errorHandler)
 app.use(express.static(__dirname + '/client'));
 //app.use(express.static(__dirname + '/fonts'));
 // app.use(express.static(__dirname + '/server'));
+app.set('views', './views')
 app.set('view engine', 'ejs');
 
+
+// catch 404 and forward to error handler
+// app.use(function (req, res, next) {
+//     var err = new Error('Not Found');
+//     err.status = 404;
+//     next(err);
+// });
+
+// production error handler
 
 
 //use route
@@ -63,17 +85,18 @@ app.post('/api/vlasnik', VlasnikController.create);
 
 var DrzaveRoute = require('./server/Route/DrzaveRouters')
 var PosaoRoute = require('./server/Route/PosaoRouters')
+var ParamRoute = require('./server/Route/ParamRouters');
 
-app.use('/', [DrzaveRoute,PosaoRoute])
+app.use('/', [DrzaveRoute,PosaoRoute,ParamRoute])
 
 // var DrzavaController = require('./server/controllers/sfDrzaveContrl');
 // app.get('/api/drzave', DrzavaController.list);
 // app.post('/api/drzave', DrzavaController.create);
 
 
-var ParamController = require('./server/controllers/apParametarContrl');
-app.get('/api/parametar', ParamController.list);
-app.post('/api/parametar', ParamController.create);
+// var ParamController = require('./server/controllers/apParametarContrl');
+// app.get('/api/parametar', ParamController.list);
+// app.post('/api/parametar', ParamController.create);
 
 //var DrzavaModel = require('./server/models/sfDrzave'); 
 
@@ -109,31 +132,56 @@ app.post('/api/parametar', ParamController.create);
 //     res.sendFile(path.join(__dirname, 'client/index.html'));
 // });
 
+// process.env.NODE_ENV = 'production';
+
+ if (app.get('env') === 'development') {
+  console.log("Koristicu error handler");
+   app.use(errorHandler());
+}
 
 //error
-// catch 404 and forward to error handler
-app.use(function (req, res, next) {
-    var err = new Error('Not Found');
-    err.status = 404;
-    next(err);
-});
+// function logErrors (err, req, res, next) {
+//   console.error(err.stack);
+//   next(err);
+// }
 
-// production error handler
-// no stacktraces leaked to user
-app.use(function (err, req, res, next) {
-    res.status(err.status || 500);
-    res.render('error', {
-        message: err.message,
-        error: {}
-    });
-});
+// function clientErrorHandler (err, req, res, next) {
+//   if (req.xhr) {
+//     res.status(500).send({ error: 'Something failed!' });
+//   } else {
+//     next(err);
+//   }
+// }
+
+ function errorHandler (err, req, res, next) {
+  console.error("errorHandler usao");
+  res.status(500);
+   //res.render('error', { error: err });
+   res.render('error', {
+              message: err.message,
+              error: {}
+          });
+ }
+
+
+
 
 
 
 //starter server
 
-var SERVER_PORT = process.env.PORT || 3000;
+process.env.NODE_ENV = 'production';
+console.log(process.env.NODE_ENV);
 
-app.listen(SERVER_PORT, function() {
-  console.log('listening on ' + SERVER_PORT);
+var server = http.createServer(app)
+var SERVER_PORT = process.env.PORT || 3000;
+server.listen(SERVER_PORT, function () {
+  console.log('Express server listening on port ' + SERVER_PORT)
 })
+
+
+
+
+// app.listen(SERVER_PORT, function() {
+//   console.log('listening on ' + SERVER_PORT);
+// })

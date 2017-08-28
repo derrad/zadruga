@@ -25,6 +25,25 @@ var apParametar = new Schema({
 );
 //apParametar.set('collection', 'apParametar');
 
+ apParametar.pre('save', function(next) {
+         console.log("PARAM PRE SAVE");
+         next();
+//         error = apParametar.validateSync();
+//         if(error){
+//             error.CustomError ="Nisam ni otisao na server";
+//             res.json(error); 
+
+//         }  
+
+ });
+ 
+// var error = apParametar.validateSync();
+// if(error){
+//     error.CustomError ="Nisam ni otisao na server";
+//     console.log(" u apParametar shemi pre poziva serveru  " + error.CustomError);
+//   // res.json(error); 
+// }  
+
 var collectionName = 'apParametar';
 
 module.exports = mongoose.model('apParametar', apParametar,collectionName);

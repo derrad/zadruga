@@ -4,19 +4,29 @@ var Parametar = require('../models/apParametar');
 module.exports.create = function (req, res) {
  // var error;
   var parametar = new Parametar(req.body);
-//  posao.pre('save', function(next) {
-//   // do stuff
-//   console.log("PRE SAVE");
-//   next();
-// });
-//  error = posao.validateSync();
-//  if(error){
- //   error.CustomError ="Nisam ni otisao na server";
- //    res.json(error); 
-//  }
+  //  parametar.pre('save', function(next) {
+  //   console.log("appparameter u pre nego save");
+  //   next();
+  // });
+  // error = parametar.validateSync();
+  // if(error){
+  //  error.CustomError ="Nisam ni otisao na server";
+  //   res.json(error); 
+  // }
+  //var error = parametar.validateSync();
+
   parametar.save(function (err, result) {
       console.log("Usao u save Parametar");
-     debugger;
+     
+      //  if(error){
+      //    console.error("PARAMETAR SAVE IMAM ERROR IZ parametar.validateSync() " + error); 
+      //    // next(error);
+      //    res.status(400);
+      //    res.json(error); 
+      //   //400 
+      // }
+
+     //debugger;
       if(err){
          //console.log(err); 
         res.json(err); 
@@ -25,6 +35,9 @@ module.exports.create = function (req, res) {
     res.json(result);
   });
 }
+
+
+
 
 
 module.exports.list = function (req, res) {

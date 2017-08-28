@@ -169,7 +169,7 @@ angular.module("ZADRUGA.controllers", [])
         $scope.loginLoading = true;
 
         var DrzaveRes = new DRZAVA();
-
+        $scope.ERROR = null;
 
         DrzaveRes.Naziv = $scope.Naziv;
         DrzaveRes.KodDrzave = $scope.KodDrzave;
@@ -181,8 +181,10 @@ angular.module("ZADRUGA.controllers", [])
 
            // debugger;
             if(result.errors){
-                alert("Error Error");
+               // alert("Error Error");
+               $scope.ERROR =result.errors;
                 $scope.ShowError(result.errors);
+
             }else{
             $scope.drzave.push(result); 
 
@@ -200,13 +202,20 @@ angular.module("ZADRUGA.controllers", [])
     $scope.title = "Drzave";
 
     $scope.ShowError = function(terror){
-        debugger;
+        //debugger;
         if(terror){
             // if(terror.StepenSS){
             //     alert("Greska " + terror.StepenSS.message);
             // }
+            if(terror.KodDrzave){
+          //      alert("KOD" + terror.KodDrzave.message  + "!!!")
+            }
 
-            alert("Greska drzave !!!")
+            if(terror.Naziv){
+           //     alert("NAZIV" + terror.Naziv.message  + "!!!")
+            }
+
+           // alert("Greska drzave !!!")
         }
 
     }
@@ -230,7 +239,8 @@ angular.module("ZADRUGA.controllers", [])
     }); 
      
     $scope.createParam = function () {
-        $scope.loginLoading = true;
+   $scope.loginLoading = true;
+   $scope.ERROR =null;
 
 //debugger;
         var ParamRes = new PARAMETAR();
@@ -248,7 +258,8 @@ angular.module("ZADRUGA.controllers", [])
 
            // debugger;
             if(result.errors){
-                alert("Error Error");
+              //  alert("Error Error");
+                $scope.ERROR =result.errors;
                 $scope.ShowError(result.errors);
             }else
             {
@@ -274,13 +285,14 @@ angular.module("ZADRUGA.controllers", [])
 
     $scope.ShowError = function(terror){
         debugger;
-        if(terror){
+        
+        // if(terror){
             
-          alert("Greska parametri !!!");
+        //   alert("Greska parametri !!!");
          
 
 
-        }
+        // }
 
     }
        

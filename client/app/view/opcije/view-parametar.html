@@ -8,81 +8,86 @@
 
     </div>
 <div class="panel-body panel-info ">
-  
-    <form role="form" ng-submit="createParam()">
-        <div class="form-group">
-            <label class="control-label col-md-2" for="Naziv">Naziv</label>
-            <div class="col-md-10">
-                <input class="form-control" 
-                data-val="true" 
-                data-val-length="Field Naziv min 2 character and  max 50 !" 
-                data-val-length-max="50" 
-                data-val-length-min="2" 
-                data-val-required="Naziv invalid data  !!!" 
-                id="Naziv" 
-                name="Naziv" 
-                type="text" 
-                ng-model="Naziv">
-                
-            </div>
-        </div>
-        <div class="form-group"
-              
-                  <label class="control-label col-md-2" for="Koristi">Koristi</label>
-                    
-                <div class="col-md-10">
-                   
-                        <input id="Koristi" name="Koristi" class="form-check-input" type="checkbox" value="" ng-model="Koristi">
-                      
-                  
-                    </div>
-              </div>
-       
 
-        <div class="form-group">
-            <label class="control-label col-md-2" for="KodDrzave">String vrednost</label>
-            <div class="col-md-10">
-                <input class="form-control" 
-                id="VredString" name="VredString" type="text" ng-model="VredString" />
-            
-            </div>
-        </div>
-
-        <div class="form-group">
-            <label class="control-label col-md-2" for="KodDrzave">Num vrednost</label>
-            <div class="col-md-10">
-                <input class="form-control" 
-                id="VredNumeric" name="VredNumeric" type="text" ng-model="VredNumeric" />
-            
-            </div>
-        </div>
-   
-
+    <div   ng-repeat="item in ERROR" ng-value="item" class="text-danger" >
+        <p>{{ERROR.KodDrzave.message}}</p>
+        <p>{{ERROR.Naziv.message}}</p>
         
+    </div>
 
- 
+  
+<form role="form" ng-submit="createParam()">
+       
     <div class="form-group">
-        <label class="control-label col-md-2" for="Opis">Opis </label>
+        <label class="control-label col-md-2" for="Naziv">Naziv</label>
         <div class="col-md-10">
-            <textarea class="form-control" cols="20" id="Opis" name="Opis" rows="2" ng-model="Opis">
-            </textarea>
+            <input class="form-control" 
+            data-val="true" 
+            data-val-length="Field Naziv min 2 character and  max 50 !" 
+            data-val-length-max="50" 
+            data-val-length-min="2" 
+            data-val-required="Naziv invalid data  !!!" 
+            id="Naziv" 
+            name="Naziv" 
+            type="text" 
+            ng-model="Naziv">
             
         </div>
     </div>
 
     <div class="form-group">
         <div class="col-md-offset-2 col-md-10">
-        <button  ladda="loginLoading" 
-                 id="btnCreateForm" type="submit" 
-                 class="btn btn-default" 
-                 title='Create data'>
-             <!--<span class="ladda-label"></span> data-spinner-color="#000000" -->
-            <span class="glyphicon glyphicon-save"></span>
-            Create
-        </button>
+        <div class="checkbox">
+        <label><input type="checkbox" ng-model="Koristi" value="">Name</label>
+        </div>
+        
+        </div>
+    </div>
+
+
+    <div class="form-group">
+        <label class="control-label col-md-2" for="KodDrzave">String vrednost</label>
+        <div class="col-md-10">
+            <input class="form-control" 
+            id="VredString" name="VredString" type="text" ng-model="VredString" />
 
         </div>
     </div>
+
+    <div class="form-group">
+        <label class="control-label col-md-2" for="KodDrzave">Num vrednost</label>
+        <div class="col-md-10">
+            <input class="form-control" 
+            id="VredNumeric" name="VredNumeric" type="text" ng-model="VredNumeric" />
+
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label class="control-label col-md-2" for="Opis">Opis </label>
+        <div class="col-md-10">
+            <textarea class="form-control" cols="20" id="Opis" name="Opis" rows="2" ng-model="Opis">
+            </textarea>
+
+        </div>
+    </div>
+
+    <div class="form-group">
+
+        <div class="col-md-offset-2 col-md-10">
+                <button  ladda="loginLoading" 
+                        id="btnCreateForm" type="submit" 
+                        class="btn btn-default" 
+                        title='Create data'>
+                    <!--<span class="ladda-label"></span> data-spinner-color="#000000" -->
+                <span class="glyphicon glyphicon-save"></span>
+                Create
+                </button>
+
+        </div>
+    </div>
+
+
 </form> 
 
 </div>
@@ -105,69 +110,4 @@
 
 
 </div>
-
-<!--<div class="panel-body panel-info ">
-<form role="form">
-        
-    <div class="form-group">
-        <label class="control-label col-md-2" for="Naziv">Naziv</label>
-        <div class="col-md-10">
-            <input class="form-control" 
-            data-val="true" 
-            data-val-length="Field Naziv min 2 character and  max 50 !" 
-            data-val-length-max="50" 
-            data-val-length-min="2" 
-            data-val-required="Naziv invalid data  !!!" 
-            id="Naziv" 
-            name="Naziv" 
-            type="text" 
-            ng-model="Naziv">
-            
-        </div>
-    </div>
-
-    <div class="form-group">
-        <label class="control-label col-md-2" for="Skola">Skola</label>
-        <div class="col-md-2">
-            <input class="form-control" 
-            id="Skola" name="Skola" type="text" ng-model="Skola" />
-        
-        </div>
-    </div>
-    <div class="form-group">
-        <label class="control-label col-md-2" for="Sifra">Sifra</label>
-        <div class="col-md-2">
-            <input class="form-control" 
-            id="Sifra" name="Sifra" type="text" ng-model="Sifra" />
-        
-        </div>
-    </div>
-    <div class="form-group">
-        <label class="control-label col-md-2" for="Sifra1">Sifra1</label>
-        <div class="col-md-2">
-            <input class="form-control" 
-            id="Sifra1" name="Sifra1" type="text" ng-model="Sifra1" />
-        
-        </div>
-    </div>
-    <div class="form-group">
-        <label class="control-label col-md-2" for="Opis">Opis </label>
-        <div class="col-md-10">
-            <textarea class="form-control" cols="20" id="Opis" name="Opis" rows="2" ng-model="Opis">
-            </textarea>
-            
-        </div>
-    </div>
-
-    <div class="form-group">
-        <div class="col-md-offset-2 col-md-10">
-        <button id="btnCreateForm" type="submit" class="btn btn-default" title='Create data'><span class="glyphicon glyphicon-save"></span>Create
-        </button>
-
-        </div>
-    </div>
-</form> 
-</div>
-
-</div>-->
 

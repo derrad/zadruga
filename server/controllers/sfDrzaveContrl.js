@@ -4,11 +4,7 @@ var Drzava = require('../models/sfDrzave');
 module.exports.create = function (req, res) {
  // var error;
   var drzava = new Drzava(req.body);
-//  drzava.pre('save', function(next) {
-//   // do stuff
-//   console.log("PRE SAVE");
-//   next();
-// });
+  
 //  error = drzava.validateSync();
 //  if(error){
  //   error.CustomError ="Nisam ni otisao na server";
@@ -16,10 +12,11 @@ module.exports.create = function (req, res) {
 //  }
 
 drzava.save(function (err, result) {
-      console.log("Usao u save drzave");
-     debugger;
+    console.log("Usao u save drzave");
+      
+     //debugger;
       if(err){
-         //console.log(err); 
+      //  console.log(err); 
         res.json(err); 
       }
     //console.log( " ovo saljem nazad" + result.toString());
