@@ -1,15 +1,18 @@
+'use strict';
 //Server za zadrugu nodejs
-var http = require('http');
-var express            = require('express'),
-     app               = express(),
-     bodyParser        = require('body-parser'),
-     mongoose          = require('mongoose');
-var Resource = require('resourcejs');
-var favicon = require('serve-favicon');
-var path = require('path');
-var methodOverride = require('method-override');
-var errorHandler = require('errorhandler');
+//var http            = require('http');
+var express         = require('express');
+var bodyParser      = require('body-parser');
+var mongoose        = require('mongoose');
+var Resource        = require('resourcejs');
+var favicon         = require('serve-favicon');
+var path            = require('path');
+//var methodOverride  = require('method-override');
+//var errorHandler    = require('errorhandler');
+var logger = require('morgan');
 
+
+var app  = express();
 
 
 //use configure app
@@ -34,32 +37,26 @@ db.once('open', function() {
 // });
 
 
+// view engine setup
+app.set('views', './views');
+app.set('view engine', 'ejs');
+
 
 //use midleware
+app.use(logger('dev'));
+// uncomment after placing your favicon in /public
 app.use(favicon(path.join(__dirname, '/client/favicon.ico')))
-//app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')))
-
-app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json()); 
-app.use(methodOverride());
+app.use(bodyParser.urlencoded({ extended: true }));
+//app.use(methodOverride());
 // app.use(logErrors)
 // app.use(clientErrorHandler)
 // app.use(errorHandler)
 app.use(express.static(__dirname + '/client'));
 //app.use(express.static(__dirname + '/fonts'));
 // app.use(express.static(__dirname + '/server'));
-app.set('views', './views')
-app.set('view engine', 'ejs');
 
 
-// catch 404 and forward to error handler
-// app.use(function (req, res, next) {
-//     var err = new Error('Not Found');
-//     err.status = 404;
-//     next(err);
-// });
-
-// production error handler
 
 
 //use route
@@ -75,9 +72,9 @@ app.get('/', function(req, res) {
 });
 
 //posle izbaci i rute podeli po oblastima u fajlove
-var VlasnikController = require('./server/controllers/VlasnikContrl'); 
-app.get('/api/vlasnik', VlasnikController.list);
-app.post('/api/vlasnik', VlasnikController.create); 
+// var VlasnikController = require('./server/controllers/VlasnikContrl'); 
+// app.get('/api/vlasnik', VlasnikController.list);
+// app.post('/api/vlasnik', VlasnikController.create); 
 
   // var PosaoController = require('./server/controllers/PosaoContrl');
   // app.get('/api/posao', PosaoController.list);
@@ -86,8 +83,9 @@ app.post('/api/vlasnik', VlasnikController.create);
 var DrzaveRoute = require('./server/Route/DrzaveRouters')
 var PosaoRoute = require('./server/Route/PosaoRouters')
 var ParamRoute = require('./server/Route/ParamRouters');
+var VlasnikRoute = require('./server/Route/VlasnikRouters');
 
-app.use('/', [DrzaveRoute,PosaoRoute,ParamRoute])
+app.use('/', [DrzaveRoute,PosaoRoute,ParamRoute,VlasnikRoute])
 
 // var DrzavaController = require('./server/controllers/sfDrzaveContrl');
 // app.get('/api/drzave', DrzavaController.list);
@@ -134,10 +132,10 @@ app.use('/', [DrzaveRoute,PosaoRoute,ParamRoute])
 
 // process.env.NODE_ENV = 'production';
 
- if (app.get('env') === 'development') {
-  console.log("Koristicu error handler");
-   app.use(errorHandler());
-}
+//  if (app.get('env') === 'development') {
+//   console.log("Koristicu error handler");
+//    app.use(errorHandler());
+// }
 
 //error
 // function logErrors (err, req, res, next) {
@@ -153,35 +151,51 @@ app.use('/', [DrzaveRoute,PosaoRoute,ParamRoute])
 //   }
 // }
 
- function errorHandler (err, req, res, next) {
-  console.error("errorHandler usao");
-  res.status(500);
-   //res.render('error', { error: err });
-   res.render('error', {
-              message: err.message,
-              error: {}
-          });
- }
+//  function errorHandler (err, req, res, next) {
+//   console.error("errorHandler usao");
+//   res.status(500);
+//    //res.render('error', { error: err });
+//    res.render('error', {
+//               message: err.message,
+//               error: {}
+//           });
+//  }
 
+//process.env.NODE_ENV = 'production';
+//app.set('env','production');
+console.log(app.get('env'));
+// catch 404 and forward to error handler
+app.use(function (req, res, next) {
+  var err = new Error('Not Found');
+  err.status = 404;
+  next(err);
+});
 
+// development error handler
+// will print stacktrace
+if (app.get('env') === 'development') {
+  app.use(function (err, req, res, next) {
+      res.status(err.status || 500);
+      res.render('error', {
+          message: err.message,
+          error: err
+      });
+  });
+}
 
-
+// production error handler
+// no stacktraces leaked to user
+app.use(function (err, req, res, next) {
+  res.status(err.status || 500);
+  res.render('error', {
+      message: err.message,
+      error: {}
+  });
+});
 
 
 //starter server
-
-process.env.NODE_ENV = 'production';
-console.log(process.env.NODE_ENV);
-
-var server = http.createServer(app)
 var SERVER_PORT = process.env.PORT || 3000;
-server.listen(SERVER_PORT, function () {
-  console.log('Express server listening on port ' + SERVER_PORT)
+ app.listen(SERVER_PORT, function() {
+   console.log('listening on ' + SERVER_PORT);
 })
-
-
-
-
-// app.listen(SERVER_PORT, function() {
-//   console.log('listening on ' + SERVER_PORT);
-// })

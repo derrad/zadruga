@@ -1,6 +1,6 @@
 var express = require('express')
 var router = express.Router()
-var DrzavaController = require('../controllers/sfDrzaveContrl');
+var DrzavaController = require('../controllers/DrzaveContrl');
 
 
 router.get('/api/drzave', DrzavaController.list);

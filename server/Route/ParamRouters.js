@@ -1,6 +1,6 @@
 var express = require('express')
 var router = express.Router()
-var ParamContrl = require('../controllers/apParametarContrl');
+var ParamContrl = require('../controllers/ParametarContrl');
 
 
 router.get('/api/parametar', ParamContrl.list);

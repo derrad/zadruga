@@ -1,4 +1,4 @@
-var Posao = require('../models/Posao.js');
+var Posao = require('../models/sfPosao.js');
 
 module.exports.create = function (req, res) {
  // var error;

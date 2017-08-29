@@ -167,7 +167,7 @@ angular.module("ZADRUGA.controllers", [])
      
     $scope.createDrzavu = function () {
         $scope.loginLoading = true;
-
+     //   debugger;
         var DrzaveRes = new DRZAVA();
         $scope.ERROR = null;
 
@@ -179,20 +179,23 @@ angular.module("ZADRUGA.controllers", [])
        
         DrzaveRes.$save(function (result) {
 
-           // debugger;
+          //  debugger;
             if(result.errors){
                // alert("Error Error");
-               $scope.ERROR =result.errors;
+                $scope.ERROR =result.errors;
                 $scope.ShowError(result.errors);
 
             }else{
-            $scope.drzave.push(result); 
+                if(result.KodDrzave){
+                    $scope.drzave.push(result); 
 
-            $scope.Naziv='';
-            $scope.KodDrzave = '';
-            $scope.NameUser='';
-            $scope.Opis='';
+                    $scope.Naziv='';
+                    $scope.KodDrzave = '';
+                    $scope.NameUser='';
+                    $scope.Opis='';
+                }
            //debugger;
+
             }
             $scope.loginLoading = false;
 

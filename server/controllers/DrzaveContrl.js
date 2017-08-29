@@ -12,14 +12,17 @@ module.exports.create = function (req, res) {
 //  }
 
 drzava.save(function (err, result) {
-    console.log("Usao u save drzave");
+    console.log("Usao u save drzave kada je ovo");
       
      //debugger;
       if(err){
-      //  console.log(err); 
+        console.log(err); 
+        //result.errors = [];
+        //result.errors.push(err);
         res.json(err); 
+       // res.json(result); 
       }
-    //console.log( " ovo saljem nazad" + result.toString());
+   // console.log( " ovo saljem nazad" + result.toString());
     res.json(result);
   });
 }

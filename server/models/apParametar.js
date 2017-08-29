@@ -6,7 +6,7 @@ var mongoose = require('mongoose');
 
 var apParametar = new Schema({
    Naziv : { type: String, required: [true, 'Naziv je obavezan !!!'] },
-   Koristi: {type:Boolean, default:true},
+   Koristi: {type:Boolean, default:false},
    VredString: {type: String },
    VredNumeric:{type:Number,default:0},
    Opis  :{ type: String },
