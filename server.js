@@ -71,36 +71,27 @@ app.get('/', function(req, res) {
      res.render('pages/index');
 });
 
-//posle izbaci i rute podeli po oblastima u fajlove
-// var VlasnikController = require('./server/controllers/VlasnikContrl'); 
-// app.get('/api/vlasnik', VlasnikController.list);
-// app.post('/api/vlasnik', VlasnikController.create); 
-
-  // var PosaoController = require('./server/controllers/PosaoContrl');
-  // app.get('/api/posao', PosaoController.list);
-  // app.post('/api/posao', PosaoController.create); 
 
 var DrzaveRoute = require('./server/Route/DrzaveRouters')
 var PosaoRoute = require('./server/Route/PosaoRouters')
 var ParamRoute = require('./server/Route/ParamRouters');
 var VlasnikRoute = require('./server/Route/VlasnikRouters');
+var ZadrugarRouter = require('./server/Route/ZadrugarRouters');
+var ZanimanjaRouter = require('./server/Route/ZanimanjaRouters');
+var RadnikRouter = require('./server/Route/RadnikRouters');
+var PartneriRouter = require('./server/Route/PartneriRouters');
+var OpstineRouter= require('./server/Route/OpstineRouters');
+var MestaRouter= require('./server/Route/MestaRouters');
+var KonstantaRouter= require('./server/Route/KonstantaRouters');
+var FondSatiRouter= require('./server/Route/FondSatiRouters');
+var KorisnikRouter= require('./server/Route/KorisnikRouters');
 
-app.use('/', [DrzaveRoute,PosaoRoute,ParamRoute,VlasnikRoute])
 
-// var DrzavaController = require('./server/controllers/sfDrzaveContrl');
-// app.get('/api/drzave', DrzavaController.list);
-// app.post('/api/drzave', DrzavaController.create);
+app.use('/', [DrzaveRoute,PosaoRoute,ParamRoute,VlasnikRoute,ZadrugarRouter,
+              ZanimanjaRouter,RadnikRouter,PartneriRouter,OpstineRouter,MestaRouter,
+              KonstantaRouter,FondSatiRouter,KorisnikRouter])
 
 
-// var ParamController = require('./server/controllers/apParametarContrl');
-// app.get('/api/parametar', ParamController.list);
-// app.post('/api/parametar', ParamController.create);
-
-//var DrzavaModel = require('./server/models/sfDrzave'); 
-
-//var PosaoModel = require('./server/models/sfPoslovi'); 
-
-//Resource(app, '/api', 'posao', PosaoModel).rest();
 
 //var ResourceDrzava = mongoose.model('Resource', DrzavaModel);
 // var resource =  Resource(app, '/api', 'drzave', DrzavaModel).get(
