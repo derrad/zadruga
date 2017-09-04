@@ -1,4 +1,5 @@
 var mongoose = require('mongoose');
+var mongoosePaginate = require('mongoose-paginate');
 
  var Schema = mongoose.Schema,
      ID  = Schema.ObjectId;
@@ -43,6 +44,8 @@ var apParametar = new Schema({
 //     console.log(" u apParametar shemi pre poziva serveru  " + error.CustomError);
 //   // res.json(error); 
 // }  
+
+apParametar.plugin(mongoosePaginate);
 
 var collectionName = 'apParametar';
 

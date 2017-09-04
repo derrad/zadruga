@@ -1,4 +1,5 @@
 var mongoose = require('mongoose');
+var mongoosePaginate = require('mongoose-paginate');
 var relationship = require("mongoose-relationship");
 var Partner = require('./server/models/sfPartneri');
 var Stavke = require('./server/models/prFaktStav');
@@ -66,7 +67,9 @@ prFaktDok.pre('save', function(next) {
     next();
   });
 
-var collectionName = 'prFaktDok';
+
+
+  prFaktDok.plugin(mongoosePaginate);
 
 module.exports = mongoose.model('prFaktDok', prFaktDok,collectionName); //mongoose.model('sfDrzave', sfDrzave);
 

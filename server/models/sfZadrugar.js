@@ -1,5 +1,6 @@
 var mongoose = require('mongoose');
 var relationship = require("mongoose-relationship");
+var mongoosePaginate = require('mongoose-paginate');
 var Drzave = require('./server/models/sfDrzave');
 var Mesta = require('./server/models/sfMesta');
 var Zanimanja = require('./server/models/sfZanimanja');
@@ -67,6 +68,9 @@ sfZadrugar.pre('save', function(next) {
     console.log("PRE SAVE zadrugar");
     next();
   });
+
+
+sfZadrugar.plugin(mongoosePaginate);
 
 var collectionName = 'sfZadrugar';
 

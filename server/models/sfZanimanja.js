@@ -1,4 +1,5 @@
 var mongoose = require('mongoose');
+var mongoosePaginate = require('mongoose-paginate');
 
  var Schema = mongoose.Schema,
      ID  = Schema.ObjectId;
@@ -30,4 +31,7 @@ var sfZanimanja = new Schema({
 }
  );
 
-module.exports = mongoose.model('sfZanimanja', sfZanimanja);
+ var collectionName = 'sfZanimanja';
+ sfZanimanja.plugin(mongoosePaginate);
+
+module.exports = mongoose.model('sfZanimanja', sfZanimanja,collectionName);

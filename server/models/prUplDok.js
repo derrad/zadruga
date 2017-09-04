@@ -1,4 +1,5 @@
 var mongoose = require('mongoose');
+var mongoosePaginate = require('mongoose-paginate');
 var relationship = require("mongoose-relationship");
 var Stavke = require('./server/models/prUplStav');
 var FaktDok = require('./server/models/prFaktDok');

@@ -1,4 +1,5 @@
 var mongoose = require('mongoose');
+var mongoosePaginate = require('mongoose-paginate');
 
  var Schema = mongoose.Schema,
      ID  = Schema.ObjectId;
@@ -60,5 +61,6 @@ var sfPartner = new Schema({
     retainKeyOrder: true 
 }
 );
-
-module.exports = mongoose.model('sfPartner', sfPartner);
+sfPartner.plugin(mongoosePaginate);
+var collectionName = 'sfPartner';
+module.exports = mongoose.model('sfPartner', sfPartner,collectionName);

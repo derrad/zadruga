@@ -1,4 +1,5 @@
 var mongoose = require('mongoose');
+var mongoosePaginate = require('mongoose-paginate');
 //Resource(app, '', 'drzave', ResourceDrzava).rest();
 //var Resource = require('resourcejs');
 
@@ -101,5 +102,6 @@ sfDrzave.pre('validate', function(next){
 // });
 
 
+sfDrzave.plugin(mongoosePaginate);
 
 module.exports =  mongoose.model('sfDrzave', sfDrzave, collectionName); //mongoose.model('sfDrzave', sfDrzave)

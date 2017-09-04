@@ -1,4 +1,5 @@
 var mongoose = require('mongoose');
+var mongoosePaginate = require('mongoose-paginate');
 
  var Schema = mongoose.Schema,
      ID  = Schema.ObjectId;
@@ -26,6 +27,8 @@ sfFondSati.pre('save', function(next) {
    console.log("PRE SAVE");
    next();
  });
+
+sfFondSati.plugin(mongoosePaginate);
 
 var collectionName = 'sfFondSati';
 

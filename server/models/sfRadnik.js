@@ -1,11 +1,21 @@
 var mongoose = require('mongoose');
+var mongoosePaginate = require('mongoose-paginate');
 
 var Schema = mongoose.Schema,
      ID  = Schema.ObjectId;
-
      
 var sfRadnik = new Schema({
-   SifraRad:{type:String,required: [true, 'Sifra je obavezna !!!']},
+   SifraRad:{
+            type:String,
+            required: [true, 'Sifra radnika je obavezna !!!'],
+            unique: true,
+            trim: true, 
+            match : [
+                    new RegExp('^[a-z0-9_-]+$', 'i'),
+                    '{PATH} \'{VALUE}\' is not valid. Use only letters, numbers, underscore.'
+                    ],
+            minlength:[4,"Minimalna duzina 4 karaktera"],
+            maxlength:[4,"Maksimalna duzina 4 karaktera"]},
    Ime:{type:String,required: [true, 'Ime je obavezno !!!']},
    Prezime : { type: String, required: [true, 'Prezime je obavezno !!!'] },
    Jmbg:{ type: String},
@@ -22,13 +32,15 @@ var sfRadnik = new Schema({
 
 );
 
-sfDrzave.pre('save', function(next) {
+sfRadnik.pre('save', function(next) {
    // do stuff
    console.log("PRE SAVE");
    next();
  });
 
 var collectionName = 'sfRadnik';
+
+sfRadnik.plugin(mongoosePaginate);
 
 module.exports = mongoose.model('sfRadnik', sfRadnik,collectionName); 
 

@@ -1,5 +1,6 @@
 var mongoose = require('mongoose');
 var relationship = require("mongoose-relationship");
+var mongoosePaginate = require('mongoose-paginate');
 var Poslovi = require('./server/models/sfPoslovi');
 var Partner = require('./server/models/sfPartneri');
 var Stavke = require('./server/models/prUputStav');

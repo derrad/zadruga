@@ -1,9 +1,10 @@
 var mongoose = require('mongoose');
+var mongoosePaginate = require('mongoose-paginate');
 
  var Schema = mongoose.Schema,
      ID  = Schema.ObjectId;
 
-var Posao = new Schema({
+var sfPosao = new Schema({
    Naziv : { type: String, required: [true, 'Naziv je obavezan'] },
    StepenSS  :  {
                  type : String,
@@ -22,7 +23,12 @@ var Posao = new Schema({
  }
  );
 
-module.exports = mongoose.model('Posao', Posao);
+
+
+ sfPosao.plugin(mongoosePaginate);
+ var collectionName = 'sfPosao';
+
+module.exports = mongoose.model('sfPosao', sfPosao,collectionName);
 
 // module.exports = mongoose.model('Posao', {
 //    Naziv : { type: String, default: 'default' },

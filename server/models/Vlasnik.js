@@ -1,4 +1,5 @@
 var mongoose = require('mongoose');
+var mongoosePaginate = require('mongoose-paginate');
 
 var Schema = mongoose.Schema,
     VlasnikID  = Schema.ObjectId;
@@ -32,7 +33,9 @@ var Vlasnik = new Schema({
  
 });
 
-module.exports = mongoose.model('Vlasnik', Vlasnik);
+var collectionName = 'Vlasnik';
+Vlasnik.plugin(mongoosePaginate);
+module.exports = mongoose.model('Vlasnik', Vlasnik,collectionName);
 
 //  name: { type: String, default: 'hahaha' },
 //   age: { type: Number, min: 18, index: true },

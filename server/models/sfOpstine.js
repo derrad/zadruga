@@ -1,6 +1,7 @@
 
 var mongoose = require('mongoose');
 var relationship = require("mongoose-relationship");
+var mongoosePaginate = require('mongoose-paginate');
 var Drzave = require('./server/models/sfDrzave');; 
 
 var Schema = mongoose.Schema,
@@ -27,8 +28,8 @@ var sfOpstine = new Schema({
 
 sfOpstine.plugin(relationship, { relationshipPathName:'Drzava' });
 var child = new sfOpstine({Drzava:sfDrzave._id});
+sfOpstine.plugin(mongoosePaginate);
+var collectionName = 'sfOpstine';
 
 
-
-
-module.exports = mongoose.model('sfOpstine', sfOpstine);
+module.exports = mongoose.model('sfOpstine', sfOpstine,collectionName);
