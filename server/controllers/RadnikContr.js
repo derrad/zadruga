@@ -2,23 +2,26 @@ var mongoose = require('mongoose');
 var Radnik = require('../models/sfRadnik');
 
 module.exports.create = function (req, res,next) {
-  const uid = req.params._id;
-  const SifraRad = req.body.SifraRad;
-  const Ime = req.body.Ime;
-  const Prezime = req.body.Prezime;
-  const Jmbg = req.body.Jmbg;
-  const Aktivan = req.body.Aktivan || false;
-  const Opis = req.body.Opis;
+  const uid = req.params.id ;
+  const SifraRad = req.body.SifraRad ;
+  const Ime = req.body.Ime ;
+  const Prezime = req.body.Prezime ;
+  const Jmbg = req.body.Jmbg ;
+  const Aktivan = req.body.Aktivan  || false;
+  const Opis = req.body.Opis ;
   const NameUser = req.body.NameUser || "TEST";
-  const radnik_id = req.body.radnik_id;
+ // const radnik_id = req.body.radnik_id ;
 
+  console.log("uid je :" + uid + " ovo je sifra " + req.body.SifraRad);
+ // console.log("radnik_id je :" + radnik_id);
+  
   if (!SifraRad || !Ime || !Prezime) {
       return res.status(422).send({ success: false, message: 'Posted data is not correct or incompleted.' });
   } else {
   
-if (radnik_id) {
+if (uid) {
   //Edit radnik
-  Radnik.findById(radnik_id).exec(function(err, radnik){
+  Radnik.findById(uid).exec(function(err, radnik){
     if(err){ 
       return res.status(400).json({ success: false, message: 'Error processing request '+ err }); 
     }
@@ -39,7 +42,7 @@ if (radnik_id) {
       }
       return res.status(201).json({
         success: true,
-        message: 'Expense updated successfully'
+        message: 'Radnik updated successfully'
       });
     });
   });
@@ -90,9 +93,9 @@ module.exports.listradnik = function (req, res,next) {
   //   res.json(results);
   // });
   Radnik.find({}).exec(function(err, radnici){
-    if(err){ res.status(400).json({ success: false, message:'Error processing request '+ err }); 
+    if(err){ return res.status(400).json({ success: false, message:'Error processing request '+ err }); 
     }
-      res.status(200).json({
+      return res.status(200).json({
       success: true, 
       data: radnici
       });
@@ -102,14 +105,28 @@ module.exports.listradnik = function (req, res,next) {
 
 
 module.exports.getradnik = function (req, res,next) {
-  console.log("Usao u list Radnik - tu sam");
+  console.log("Usao u list Radnik - tu sam  " + req.params.id);
   Radnik.find({_id:req.params.id}).exec(function(err, radnici){
-    if(err){ res.status(400).json({ success: false, message:'Error processing request '+ err }); 
+    if(err){ 
+      return res.status(400).json(
+      { success: false, message:'Error processing request '+ err , data:null }
+      ); 
     }
-      res.status(200).json({
+      return res.status(200).json({
       success: true, 
       data: radnici
       });
     });
 
+}
+
+module.exports.deleradnik = function(req, res, next) {
+  console.log("parametar je : " + req.params.id);
+	Radnik.remove({_id: req.params.id}, function(err){
+        if(err){ return res.status(400).json({ success: false, message: 'Error processing request '+ err }); }
+        return res.status(201).json({
+            success: true,
+            message: 'Radnik removed successfully'
+          });
+  });
 }

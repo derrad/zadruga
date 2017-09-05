@@ -22,6 +22,7 @@ var sfZanimanja = new Schema({
    Opis  :{ type: String },
    DatCreate :{ type: Date, default: Date.now },
    DatUpdate :{ type: Date},
+   NameUser: {type:String}
  },
  {
  timestamps: { createdAt: 'created_at' }

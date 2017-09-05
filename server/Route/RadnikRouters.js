@@ -9,15 +9,18 @@ var RadnikController = require('../controllers/RadnikContr');
 router.get('/api/radnik', RadnikController.listradnik);
 router.get('/api/radnik/:id', RadnikController.getradnik); // API returns radnik details of given radnik id
 router.post('/api/radnik', RadnikController.create);
-router.put('/api/radnik', RadnikController.create);
+router.put('/api/radnik/:id', RadnikController.create);
+router.delete('/api/radnik/:id', RadnikController.deleradnik);
 
-// router.put('/api/radnik', (req,res)=>{
+
+// router.put('/api/radnik/:id', (req,res)=>{
 //     res.send("PUT radnik");
 // });
 
-router.delete('/api/radnik', (req,res)=>{
-    res.send("DELETE radnik");
-});
+//  router.delete('/api/radnik/:id', (req,res)=>{
+//     console.log("parametar je : " + req.params.id);
+//      res.send("DELETE radnik");
+//  });
 
 
 

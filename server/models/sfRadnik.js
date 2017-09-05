@@ -34,7 +34,7 @@ var sfRadnik = new Schema({
 
 sfRadnik.pre('save', function(next) {
    // do stuff
-   console.log("PRE SAVE");
+   console.log("PRE SAVE RADNIK");
    next();
  });
 

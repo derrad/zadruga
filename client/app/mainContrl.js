@@ -91,13 +91,15 @@ angular.module("ZADRUGA.controllers", [])
 .controller("posaoCtrl", ["$scope", "$rootScope","$resource", function ($scope, $rootScope, $resource) {
 
     var Posao = $resource('/api/posao');
-  
+    $scope.posao =[]; 
     Posao.query(function (results) {
-        $scope.posao = results;
-      //  debugger;
+        if(result.success===false){
+         $scope.posao = results.data;
+        }
+        debugger;
       //  $scope.Ime = results.Ime;
     }); 
-    $scope.posao =[]; 
+   
 
     $scope.Sprema = ['Nekvalifikovan', 'Polukvalifikovan', 'Kvalifikovan','Srednja Strucna Sprema','VKV','Visa skola','Fakultet','Magistar','Doktor Nauka'];
     $scope.SelectSprema = '';
@@ -118,11 +120,11 @@ angular.module("ZADRUGA.controllers", [])
         posres.$save(function (result) {
 
             //debugger;
-            if(result.errors){
+            if(result.success===false){
                 //alert("Error Error");
-                $scope.ShowError(result.errors);
+                $scope.ShowError(result.message);
             }else{
-            $scope.posao.push(result); 
+            $scope.posao.push(result.data); 
 
             $scope.Naziv='';
             $scope.SelectSprema = '';
@@ -142,9 +144,10 @@ angular.module("ZADRUGA.controllers", [])
     $scope.ShowError = function(terror){
         debugger;
         if(terror){
-            if(terror.StepenSS){
-                alert("Greska " + terror.StepenSS.message);
-            }
+            // if(terror.StepenSS){
+            //     alert("Greska " + terror.StepenSS.message);
+            // }
+            alert("Greska " + terror);
 
 
         }

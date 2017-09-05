@@ -1,8 +1,5 @@
 var mongoose = require('mongoose');
 var mongoosePaginate = require('mongoose-paginate');
-//Resource(app, '', 'drzave', ResourceDrzava).rest();
-//var Resource = require('resourcejs');
-
 // match : [
 //     new RegExp('^[a-z0-9_.-]+$', 'i'),
 //     '{PATH} \'{VALUE}\' is not valid. Use only letters, numbers, underscore or dot.'
@@ -39,10 +36,7 @@ var sfDrzave = new Schema({
 );
 
 
-var collectionName = 'sfDrzave';
-//const MyModel =  mongoose.model('sfDrzave', sfDrzave, collectionName);
 
-//var varModelExport = mongoose.model('sfDrzave', sfDrzave, collectionName); //mongoose.model('sfDrzave', sfDrzave);
 
 sfDrzave.pre("save", function(next) {
     var self = this;
@@ -101,7 +95,7 @@ sfDrzave.pre('validate', function(next){
 //     //next();
 // });
 
-
+var collectionName = 'sfDrzave';
 sfDrzave.plugin(mongoosePaginate);
 
 module.exports =  mongoose.model('sfDrzave', sfDrzave, collectionName); //mongoose.model('sfDrzave', sfDrzave)

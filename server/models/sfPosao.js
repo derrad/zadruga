@@ -1,49 +1,58 @@
 var mongoose = require('mongoose');
 var mongoosePaginate = require('mongoose-paginate');
+//var EnumSS = require('../enum/serverenum');
 
  var Schema = mongoose.Schema,
      ID  = Schema.ObjectId;
 
 var sfPosao = new Schema({
-   Naziv : { type: String, required: [true, 'Naziv je obavezan'] },
+   Naziv : {  type:String,trim:true,required: [true, 'Naziv je obavezan !!!'],unique: true,match : [
+               new RegExp('^[a-z0-9_ -]+$', 'i'),
+               '{PATH} \'{VALUE}\' is not valid. Use only letters, numbers, underscore.'
+               ]},
    StepenSS  :  {
                  type : String,
+                 required: [true, 'StepenSS je obavezan !!!'],
                  default : 'Nekvalifikovan',
                  enum : ['Nekvalifikovan', 'Polukvalifikovan', 'Kvalifikovan','Srednja Strucna Sprema','VKV','Visa skola','Fakultet','Magistar','Doktor Nauka']
                 },
-   Skola  :{ type: String },
-   Sifra   :{ type: String },
-   Sifra1   :{ type: String },
-   Opis  :{ type: String },
-   DatCreate :{ type: Date, default: Date.now },
-   DatUpdate :{ type: Date},
+   Skola  :{ type: String,trim: true  },
+   Sifra   :{ type: String,trim: true  },
+   Sifra1   :{ type: String,trim: true },
+   Opis  :{ type: String,trim: true },
+   NameUser: {type:String,trim: true}
  },
  {
  timestamps: { createdAt: 'created_at' }
+ },
+ { 
+     retainKeyOrder: true 
  }
  );
 
 
+ sfPosao.pre('save', function(next) {
+   // do stuff
+   console.log("PRE SAVE POSAO");
+  next();
+});
 
  sfPosao.plugin(mongoosePaginate);
  var collectionName = 'sfPosao';
 
 module.exports = mongoose.model('sfPosao', sfPosao,collectionName);
 
-// module.exports = mongoose.model('Posao', {
-//    Naziv : { type: String, default: 'default' },
-//    StepenSS  :  {
-//                  type : String,
-//                  default : 'Nekvalifikovan',
-//                  enum : ['Nekvalifikovan', 'Polukvalifikovan', 'Kvalifikovan','Srednja Strucna Sprema','VKV','Visa skola','Fakultet','Magistar','Doktor Nauka']
-//                 },
-//    Skola  :{ type: String },
-//    Sifra   :{ type: String },
-//    Sifra1   :{ type: String },
-//    Opis  :{ type: String },
-//    DatCreate :{ type: Date, default: Date.now },
-//    DatUpdate :{ type: Date}
-// });
+
+// Naziv : {  type:String,
+//   required: [true, 'Naziv je obavezan !!!'],
+//   unique: true,
+//   trim: true, 
+//   match : [
+//           new RegExp('^[a-z0-9_-]+$', 'i'),
+//           '{PATH} \'{VALUE}\' is not valid. Use only letters, numbers, underscore.'
+//           ],
+//   minlength:[3,"Minimalna duzina 3 karaktera"],
+//   maxlength:[100,"Maksimalna duzina 100 karaktera"]},
 
 
 // <option value="1">Nekvalifikovan</option>  PosaoID: ID,
