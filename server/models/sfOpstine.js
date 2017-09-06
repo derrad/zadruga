@@ -31,5 +31,4 @@ var child = new sfOpstine({Drzava:sfDrzave._id});
 sfOpstine.plugin(mongoosePaginate);
 var collectionName = 'sfOpstine';
 
-
 module.exports = mongoose.model('sfOpstine', sfOpstine,collectionName);
