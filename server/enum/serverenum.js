@@ -11,15 +11,17 @@
 
 // });
 
-const Strucna = new Set();
-Strucna.add("Nekvalifikovan");
-Strucna.add("Polukvalifikovan");
-Strucna.add("Kvalifikovan");
-Strucna.add("Srednja Strucna Sprema");
-Strucna.add("VKV");
-Strucna.add("Visa skola");
-Strucna.add("Fakultet");
-Strucna.add("Magistar");
-Strucna.add("Doktor Nauka");
+// const Strucna = new Set();
+// Strucna.add("Nekvalifikovan");
+// Strucna.add("Polukvalifikovan");
+// Strucna.add("Kvalifikovan");
+// Strucna.add("Srednja Strucna Sprema");
+// Strucna.add("VKV");
+// Strucna.add("Visa skola");
+// Strucna.add("Fakultet");
+// Strucna.add("Magistar");
+// Strucna.add("Doktor Nauka");
 
-module.exports.StepenSS =Strucna;
+module.exports.StepenSS =['Nekvalifikovan', 'Polukvalifikovan', 'Kvalifikovan','Srednja Strucna Sprema','VKV','Visa skola','Fakultet','Magistar','Doktor Nauka'];
+
+

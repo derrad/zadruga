@@ -1,6 +1,6 @@
 var mongoose = require('mongoose');
 var mongoosePaginate = require('mongoose-paginate');
-//var EnumSS = require('../enum/serverenum');
+var EnumSS = require('../enum/serverenum');
 
  var Schema = mongoose.Schema,
      ID  = Schema.ObjectId;
@@ -14,7 +14,7 @@ var sfPosao = new Schema({
                  type : String,
                  required: [true, 'StepenSS je obavezan !!!'],
                  default : 'Nekvalifikovan',
-                 enum : ['Nekvalifikovan', 'Polukvalifikovan', 'Kvalifikovan','Srednja Strucna Sprema','VKV','Visa skola','Fakultet','Magistar','Doktor Nauka']
+                 enum : EnumSS.StepenSS //['Nekvalifikovan', 'Polukvalifikovan', 'Kvalifikovan','Srednja Strucna Sprema','VKV','Visa skola','Fakultet','Magistar','Doktor Nauka']
                 },
    Skola  :{ type: String,trim: true  },
    Sifra   :{ type: String,trim: true  },

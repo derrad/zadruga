@@ -36,7 +36,7 @@ var sfKonstanta = new Schema({
 
 sfKonstanta.pre('save', function(next) {
    // do stuff
-   console.log("PRE SAVE");
+   console.log("sfKonstanta PRE SAVE");
    next();
  });
 

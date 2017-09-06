@@ -17,14 +17,14 @@ module.exports.create = function (req, res,next) {
  // console.log("radnik_id je :" + radnik_id);
   
   if (!Naziv || !StepenSS ) {
-      return res.status(422).send({ success: false, message: 'Posted data is not correct or incompleted.' });
+      return res.status(422).send({ success: false, message: 'Posted data is not correct or incompleted.', data:null });
   } else {
   
 if (uid) {
   //Edit radnik
   Posao.findById(uid).exec(function(err, posao){
     if(err){ 
-      return res.status(400).json({ success: false, message: 'Error processing request '+ err }); 
+      return res.status(400).json({ success: false, message: 'Error processing request '+ err, data:null }); 
     }
       
     if(posao) {
@@ -66,7 +66,7 @@ if (uid) {
   oPosao.save(function(err,result) {
     if(err){ 
      return  res.status(400).json(
-        { success: false, message: 'Error processing request '+ err });
+        { success: false, message: 'Error processing request '+ err , data:null});
     }
       
    return res.status(201).json({
@@ -86,12 +86,12 @@ if (uid) {
 module.exports.listposao = function (req, res,next) {
   console.log("Usao u list posao - tu sam");
   
-  Posao.find({}).exec(function(err, posao){
-    if(err){ return res.status(400).json({ success: false, message:'Error processing request '+ err }); 
+  Posao.find({}).exec(function(err, result){
+    if(err){ return res.status(400).json({ success: false, message:'Error processing request '+ err, data:null }); 
     }
       return res.status(200).json({
       success: true, 
-      data: posao
+      data: result
       });
     });
 
@@ -100,7 +100,7 @@ module.exports.listposao = function (req, res,next) {
 
 module.exports.getposao = function (req, res,next) {
   console.log("Usao u list posao - tu sam  " + req.params.id);
-  Posao.find({_id:req.params.id}).exec(function(err, posao){
+  Posao.find({_id:req.params.id}).exec(function(err, result){
     if(err){ 
       return res.status(400).json(
       { success: false, message:'Error processing request '+ err , data:null }
@@ -108,7 +108,7 @@ module.exports.getposao = function (req, res,next) {
     }
       return res.status(200).json({
       success: true, 
-      data: posao
+      data: result
       });
     });
 
@@ -117,10 +117,11 @@ module.exports.getposao = function (req, res,next) {
 module.exports.deleposao = function(req, res, next) {
   console.log("parametar je : " + req.params.id);
 	Posao.remove({_id: req.params.id}, function(err){
-        if(err){ return res.status(400).json({ success: false, message: 'Error processing request '+ err }); }
+        if(err){ return res.status(400).json({ success: false, message: 'Error processing request '+ err , data:null}); }
         return res.status(201).json({
             success: true,
-            message: 'Posao removed successfully'
+            message: 'Posao removed successfully',
+             data:null
           });
   });
 }

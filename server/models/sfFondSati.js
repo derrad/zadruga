@@ -24,7 +24,7 @@ var sfFondSati = new Schema({
 
 sfFondSati.pre('save', function(next) {
    // do stuff
-   console.log("PRE SAVE");
+   console.log("sfFondSati PRE SAVE");
    next();
  });
 
@@ -32,7 +32,7 @@ sfFondSati.plugin(mongoosePaginate);
 
 var collectionName = 'sfFondSati';
 
-module.exports = mongoose.model('sfKonstanta', sfFondSati,collectionName);
+module.exports = mongoose.model('sfFondSati', sfFondSati,collectionName);
 
 
 // #region IsfFondSati Members
