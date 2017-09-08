@@ -10,8 +10,8 @@ var sfFondSati = new Schema({
     Sati:{ type: Number,default:0,required:true},
     MinOsnov:{ type: Number,default:0,required:true},
     MaxOsnov:{ type: Number,default:0,required:true},
-    Opis  :{ type: String },
-    NameUser: {type:String}
+    Opis  :{ type: String,trim: true },
+    NameUser: {type:String,trim: true}
 },
 {
  timestamps: { createdAt: 'created_at' }

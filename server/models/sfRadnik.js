@@ -1,6 +1,5 @@
 var mongoose = require('mongoose');
 var mongoosePaginate = require('mongoose-paginate');
-
 var Schema = mongoose.Schema,
      ID  = Schema.ObjectId;
      
@@ -33,7 +32,6 @@ var sfRadnik = new Schema({
 );
 
 sfRadnik.pre('save', function(next) {
-   // do stuff
    console.log("PRE SAVE RADNIK");
    next();
  });
@@ -43,10 +41,6 @@ var collectionName = 'sfRadnik';
 sfRadnik.plugin(mongoosePaginate);
 
 module.exports = mongoose.model('sfRadnik', sfRadnik,collectionName); 
-
-// {
-//     Schema :"sfDrzave"
-// }
 
 
 

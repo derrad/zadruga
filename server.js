@@ -85,11 +85,12 @@ var MestaRouter= require('./server/Route/MestaRouters');
 var KonstantaRouter= require('./server/Route/KonstantaRouters');
 var FondSatiRouter= require('./server/Route/FondSatiRouters');
 var KorisnikRouter= require('./server/Route/KorisnikRouters');
+var VezbeRouter= require('./server/Route/VezbaRouters');
 
 
 app.use('/', [DrzaveRoute,PosaoRoute,ParamRoute,VlasnikRoute,ZadrugarRouter,
               ZanimanjaRouter,RadnikRouter,PartneriRouter,OpstineRouter,MestaRouter,
-              KonstantaRouter,FondSatiRouter,KorisnikRouter])
+              KonstantaRouter,FondSatiRouter,KorisnikRouter,VezbeRouter])
 
 
 

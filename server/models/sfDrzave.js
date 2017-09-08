@@ -1,5 +1,6 @@
 var mongoose = require('mongoose');
-var mongoosePaginate = require('mongoose-paginate');
+//var mongoosePaginate = require('mongoose-paginate');
+var Opstine = require('../models/sfOpstine');
 // match : [
 //     new RegExp('^[a-z0-9_.-]+$', 'i'),
 //     '{PATH} \'{VALUE}\' is not valid. Use only letters, numbers, underscore or dot.'
@@ -24,7 +25,9 @@ var sfDrzave = new Schema({
    Naziv : { type: String, required: [true, 'Naziv je obavezan !!!'],unique: true,trim: true, minlength:1 },
    EuClan: {type:Boolean, default:false},
    Opis  :{ type: String },
-   NameUser: {type:String}
+   NameUser: {type:String},
+   opstine:[{ type:Schema.ObjectId, ref:"Opstine" }]
+   //children:[{ type:Schema.ObjectId, ref:"Child" }]
 },
 {
  timestamps: { createdAt: 'created_at' }
@@ -34,8 +37,6 @@ var sfDrzave = new Schema({
 }
 
 );
-
-
 
 
 sfDrzave.pre("save", function(next) {
@@ -96,6 +97,6 @@ sfDrzave.pre('validate', function(next){
 // });
 
 var collectionName = 'sfDrzave';
-sfDrzave.plugin(mongoosePaginate);
+//sfDrzave.plugin(mongoosePaginate);
 
 module.exports =  mongoose.model('sfDrzave', sfDrzave, collectionName); //mongoose.model('sfDrzave', sfDrzave)

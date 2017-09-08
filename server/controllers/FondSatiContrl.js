@@ -5,7 +5,7 @@ module.exports.create = function (req, res,next) {
   const uid = req.params.id ;
 
   const Mesec=req.body.Mesec || new Date().getMonth()+1;
-  const Godina=req.body.Godina || new Date().getFullYear();;
+  const Godina=req.body.Godina || new Date().getFullYear();
   const Sati = req.body.Sati;
   const MinOsnov =req.body.MinOsnov;
   const MaxOsnov=req.body.MaxOsnov;
