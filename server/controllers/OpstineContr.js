@@ -145,7 +145,7 @@ if (uid) {
 module.exports.listopstine = function (req, res,next) {
   console.log("Usao u list Opstina");
   
-  Opstina.find({}).populate('sfDrzava',['KodDrzave','Naziv']).exec(function(err, result){
+  Opstina.find({}).populate('Drzava',['KodDrzave','Naziv']).exec(function(err, result){
     if(err){ return res.status(400).json({ success: false, message:'Error processing request '+ err, data:[] }); 
     }
    // console.log( "Hvatam ga " +  result.Drzava.Naziv);

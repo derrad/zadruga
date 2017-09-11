@@ -25,7 +25,6 @@ var PosaoController = require('../controllers/VezbeContr');
 
 
  router.get('/api/story', PosaoController.listStory);
-
  router.post('/api/story', PosaoController.createStory);
  router.put('/api/story/:id', PosaoController.createStory);
 

@@ -61,7 +61,7 @@ var accessLogStream = rfs('access.log', {
   path: logDirectory
 })
 
-// setup the logger
+// setup the logger // Standard Apache combined log output. or use common Standard Apache common log output.
 app.use(morgan('combined', {stream: accessLogStream}))
 
 

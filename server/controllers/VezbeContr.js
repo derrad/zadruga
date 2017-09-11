@@ -63,7 +63,12 @@ module.exports.createPerson = function (req, res,next) {
       });
 
      
-
+      oStory.save(function(err,result) {
+        if(err){ 
+         return  res.status(400).json(
+            { success: false, message: 'oStory - save Error processing request '+ err, data:null });
+        }
+      });  
 
      return res.status(201).json({
         success: true,
@@ -131,7 +136,7 @@ module.exports.createPerson = function (req, res,next) {
     const author = req.body.author ;
     const title = req.body.title ;
      
-    console.log("uid je :" + uid + " ovo je sifra " + req.body.name);
+    console.log("uid je :" + uid + " ovo je title " + req.body.title  + " id");
    // console.log("radnik_id je :" + radnik_id);
     
     if (!author || !title ) {
@@ -139,7 +144,7 @@ module.exports.createPerson = function (req, res,next) {
     } else {
     
   if (uid) {
-    //Edit radnik
+    //Edit story
     VzModel.Story.findById(uid).exec(function(err, story){
       if(err){ 
         return res.status(400).json({ success: false, message: 'Error processing request '+ err, data:null }); 
@@ -197,7 +202,7 @@ module.exports.createPerson = function (req, res,next) {
 module.exports.listStory = function (req, res,next) {
     console.log("Usao u list Story");
     
-    VzModel.Story.find({}).populate('Person').exec(function(err, result){
+    VzModel.Story.find({}).populate('author').exec(function(err, result){
       if(err){ return res.status(400).json({ success: false, message:'Error processing request '+ err, data:[] }); 
       }
      // console.log( "Hvatam ga " +  result.Drzava.Naziv);
