@@ -6,10 +6,15 @@ var bodyParser      = require('body-parser');
 var mongoose        = require('mongoose');
 var Resource        = require('resourcejs');
 var favicon         = require('serve-favicon');
-var path            = require('path');
+var morgan = require('morgan');
+var path = require('path');
+var rfs = require('rotating-file-stream');
+
+var fs = require('fs');
+
 //var methodOverride  = require('method-override');
 //var errorHandler    = require('errorhandler');
-var logger = require('morgan');
+//var logger = require('morgan');
 
 
 var app  = express();
@@ -43,7 +48,25 @@ app.set('view engine', 'ejs');
 
 
 //use midleware
-app.use(logger('dev'));
+//app.use(logger('dev'));
+
+var logDirectory = path.join(__dirname, 'log')
+
+// ensure log directory exists
+fs.existsSync(logDirectory) || fs.mkdirSync(logDirectory)
+
+// create a rotating write stream
+var accessLogStream = rfs('access.log', {
+  interval: '1d', // rotate daily
+  path: logDirectory
+})
+
+// setup the logger
+app.use(morgan('combined', {stream: accessLogStream}))
+
+
+
+
 // uncomment after placing your favicon in /public
 app.use(favicon(path.join(__dirname, '/client/favicon.ico')))
 app.use(bodyParser.json()); 
