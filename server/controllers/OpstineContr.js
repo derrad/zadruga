@@ -82,13 +82,25 @@ if (uid) {
        return  res.status(400).json(
           { success: false, message: 'Error processing request '+ err , data:[]});
       }
+
+
+      Opstina.find({_id:oOpstina._id}).populate('Drzava',['KodDrzave','Naziv']).exec(function(err, result){
+        if(err){ return res.status(400).json({ success: false, message:'Error processing request '+ err, data:[] }); 
+        }
+       // console.log( "Hvatam ga " +  result.Drzava.Naziv);
+          return res.status(201).json({
+          success: true,
+          message:'Opstina saved successfully', 
+          data: result
+          });
+        });
         
-     return res.status(201).json({
-        success: true,
-        message: 'Opstina saved successfully',
-        data: result
+    //  return res.status(201).json({
+    //     success: true,
+    //     message: 'Opstina saved successfully',
+    //     data: result
   
-      });
+    //   });
     });
 
 
