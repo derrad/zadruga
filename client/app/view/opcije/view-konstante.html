@@ -1,0 +1,28 @@
+<div ng-controller="KonstCtrl">
+    <h1>{{title}}</h1>
+<div>
+     <h4>There are {{Konst.length}} konstanti</h4>
+        <ul>
+          <li ng-repeat="item in Konst">
+            {{item._id}} |
+            {{item.Datum | date:short}} |
+            {{item.UcPenz | number :2}} &#37;|
+            {{item.UcZdrav | number:2}} &#37;|
+            {{item.UcNormTr | number:2}} &#37;|
+            {{item.UcOlak | number:2}} &#37;|
+            {{item.Pdv | number:2}} &#37;|
+            {{item.OsPio1 | number:2}} &#37;|
+            {{item.OsPio2 | number:2}} &#37;|
+            {{item.OsZdrav1 | number:2}} &#37;|
+            {{item.OsNez1 | number:2}} &#37;|
+
+          </li>
+
+        </ul>
+</div>
+
+
+</div>
+
+
+

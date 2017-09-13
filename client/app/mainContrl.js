@@ -35,14 +35,35 @@ angular.module("ZADRUGA.controllers", [])
 }])
 .controller("vlasnikCtrl", ["$scope", "$rootScope","$resource", function ($scope, $rootScope, $resource) {
 
-    var Vlasnik = $resource('/api/vlasnik');
+   // var Vlasnik = $resource('/api/vlasnik');
   
-    Vlasnik.query(function (results) {
+    // Vlasnik.query(function (results) {
+    //     $scope.vlasnik = results;
+    //   //  debugger;
+    //   //  $scope.Ime = results.Ime;
+    // }); 
+    var Vlasnik = $resource('/api/vlasnik', null,
+    {
+        'query':  {method:'GET', 
+                  isArray:true,
+                  transformResponse: function(results) {
+                     // debugger;
+                      return angular.fromJson(results).data;
+                      //$scope.Mesta=results.data;
+                      //return results.data;
+                      }
+                  }    
+    }
+  );
+
+  Vlasnik.query(function (results) {
         $scope.vlasnik = results;
-      //  debugger;
-      //  $scope.Ime = results.Ime;
+        //debugger;
+  // // //   //  $scope.Ime = results.Ime;
     }); 
-    $scope.vlasnik =[]; 
+
+
+   // $scope.vlasnik =[]; 
   
     $scope.createVlasnik = function () {
         var vlasres = new Vlasnik();
@@ -90,13 +111,28 @@ angular.module("ZADRUGA.controllers", [])
 }])
 .controller("posaoCtrl", ["$scope", "$rootScope","$resource", function ($scope, $rootScope, $resource) {
 
-    var Posao = $resource('/api/posao');
-    $scope.posao =[]; 
+   // var Posao = $resource('/api/posao');
+
+    var Posao = $resource('/api/posao', null,
+    {
+        'query':  {method:'GET', 
+                  isArray:true,
+                  transformResponse: function(results) {
+                     // debugger;
+                      return angular.fromJson(results).data;
+                      //$scope.Mesta=results.data;
+                      //return results.data;
+                      }
+                  }    
+    }
+  );
+
+   // $scope.posao =[]; 
     Posao.query(function (results) {
-        if(result.success===false){
-         $scope.posao = results.data;
-        }
-        debugger;
+        //if(results.success){
+         $scope.posao = results;
+       // }
+        //debugger;
       //  $scope.Ime = results.Ime;
     }); 
    
@@ -230,10 +266,146 @@ angular.module("ZADRUGA.controllers", [])
 
 
 }])
+.controller("FondSatiCtrl", ["$scope", "$rootScope","$resource", function ($scope, $rootScope, $resource) {
+    
+        $scope.FondSati = [];
+        var FONDSATI = $resource('/api/fondsati', null,
+           {
+               'query':  {method:'GET', 
+                         isArray:true,
+                         transformResponse: function(results) {
+                            // debugger;
+                             return angular.fromJson(results).data;
+                             }
+                         }    
+           }
+         );
+    
+         FONDSATI.query(function (results) {
+               $scope.FondSati = results;
+         //      debugger;
+         
+           }); 
+    
+         $scope.title = "FOND SATI";
+     }])
+.controller("KonstCtrl", ["$scope", "$rootScope","$resource", function ($scope, $rootScope, $resource) {
 
+    $scope.Konst = [];
+    var KONSTANTA = $resource('/api/konstanta', null,
+       {
+           'query':  {method:'GET', 
+                     isArray:true,
+                     transformResponse: function(results) {
+                        // debugger;
+                         return angular.fromJson(results).data;
+                         }
+                     }    
+       }
+     );
 
+     KONSTANTA.query(function (results) {
+           $scope.Konst = results;
+          // debugger;
+     
+       }); 
 
-//parametarCtrl
+     $scope.title = "KONSTANTA";
+ }])
+ .controller("RadnikCtrl", ["$scope", "$rootScope","$resource", function ($scope, $rootScope, $resource) {
+    
+        $scope.Radnik = [];
+        var RADNIK = $resource('/api/radnik/', null,
+           {
+               'query':  {method:'GET', 
+                         isArray:true,
+                         transformResponse: function(results) {
+                            // debugger;
+                             return angular.fromJson(results).data;
+                             }
+                         }    
+           }
+         );
+    
+         RADNIK.query(function (results) {
+               $scope.Radnik = results;
+               //debugger;
+         
+           }); 
+    
+         $scope.title = "RADNIK";
+  }])
+.controller("ZanimanjaCtrl", ["$scope", "$rootScope","$resource", function ($scope, $rootScope, $resource) {
+    
+        $scope.Zanimanja = [];
+        var ZANIM = $resource('/api/zanimanja/', null,
+           {
+               'query':  {method:'GET', 
+                         isArray:true,
+                         transformResponse: function(results) {
+                            // debugger;
+                             return angular.fromJson(results).data;
+                             }
+                         }    
+           }
+         );
+    
+         ZANIM.query(function (results) {
+               $scope.Zanimanja = results;
+             //  debugger;
+         
+           }); 
+    
+         $scope.title = "ZANIMANJA";
+}])
+ .controller("MestaCtrl", ["$scope", "$rootScope","$resource", function ($scope, $rootScope, $resource) {
+       var MESTA = $resource('/api/mesta', null,
+          {
+              'query':  {method:'GET', 
+                        isArray:true,
+                        transformResponse: function(results) {
+                           // debugger;
+                            return angular.fromJson(results).data;
+                            //$scope.Mesta=results.data;
+                            //return results.data;
+                            }
+                        }    
+          }
+        );
+
+          MESTA.query(function (results) {
+              $scope.Mesta = results;
+              //debugger;
+        // // //   //  $scope.Ime = results.Ime;
+          }); 
+
+        $scope.title = "Mesta";
+    }])
+    .controller("OpstineCtrl", ["$scope", "$rootScope","$resource", function ($scope, $rootScope, $resource) {
+    
+        var OPSTINE = $resource('/api/opstine', null,
+           {
+               'query':  {method:'GET', 
+                         isArray:true,
+                         transformResponse: function(results) {
+                            // debugger;
+                             return angular.fromJson(results).data;
+                             //$scope.Mesta=results.data;
+                             //return results.data;
+                             }
+                         }    
+           }
+         );
+ 
+         OPSTINE.query(function (results) {
+               $scope.Opstine = results;
+               //debugger;
+         // // //   //  $scope.Ime = results.Ime;
+           }); 
+ 
+         $scope.title = "OPSTINE";
+     }])
+    //parametarCtrl
 .controller("parametarCtrl", ["$scope", "$rootScope","$resource", function ($scope, $rootScope, $resource) {
 
     var PARAMETAR = $resource('/api/parametar');
@@ -269,7 +441,7 @@ angular.module("ZADRUGA.controllers", [])
                 $scope.ShowError(result.errors);
             }else
             {
-            debugger;
+          //  debugger;
             $scope.parametari.push(result); 
 
             $scope.Naziv = "";
@@ -290,7 +462,7 @@ angular.module("ZADRUGA.controllers", [])
     $scope.title = "Parametri";
 
     $scope.ShowError = function(terror){
-        debugger;
+       // debugger;
         
         // if(terror){
             

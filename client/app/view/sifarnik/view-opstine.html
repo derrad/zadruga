@@ -1,0 +1,20 @@
+<div ng-controller="OpstineCtrl">
+    <h1>{{title}}</h1>
+<div>
+     <h4>There are {{Opstine.length}} opština</h4>
+        <ul>
+          <li ng-repeat="item in Opstine">
+            {{item._id}} /\
+            {{item.Naziv}} /\
+            {{item.RegOzn}} /\
+            {{item.Drzava.Naziv}} /\
+          </li>
+
+        </ul>
+</div>
+
+
+</div>
+
+
+

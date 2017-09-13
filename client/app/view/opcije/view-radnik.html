@@ -1,0 +1,24 @@
+<div ng-controller="RadnikCtrl">
+    <h1>{{title}}</h1>
+<div>
+     <h4>There are {{Radnik.length}} Radnika</h4>
+        <ul>
+          <li ng-repeat="item in Radnik">
+            {{item._id}} |
+            {{item.SifraRad}} -
+            {{item.Ime}} |
+            {{item.Prezime}} |
+            {{item.Jmbg}}|
+            {{item.Aktivan}} |
+            {{item.Opis }} |
+            
+          </li>
+
+        </ul>
+</div>
+
+
+</div>
+
+
+

@@ -1,0 +1,22 @@
+<div ng-controller="ZanimanjaCtrl">
+
+  <h1>{{title}}</h1>
+<div>
+     <h4>There are {{Zanimanja.length}} zanimanja</h4>
+        <ul>
+          <li ng-repeat="item in Zanimanja">
+            {{item._id}} /\
+            {{item.Sifra}} /\
+            {{item.Naziv}} /\
+            {{item.StepenSS}} /\
+            {{item.NivoUnosa}} /\
+          </li>
+
+        </ul>
+</div>
+
+
+</div>
+
+
+

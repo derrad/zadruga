@@ -1,0 +1,20 @@
+<div ng-controller="MestaCtrl">
+    <h1>{{title}}</h1>
+<div>
+     <h4>There are {{Mesta.length}} mesta</h4>
+        <ul>
+          <li ng-repeat="item in Mesta">
+            {{item._id}} /\
+            {{item.Naziv}} /\
+            {{item.Opstina.Naziv}} /\
+            {{item.Opstina.Drzava.Naziv}} /\
+          </li>
+
+        </ul>
+</div>
+
+
+</div>
+
+
+

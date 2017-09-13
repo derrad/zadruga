@@ -53,6 +53,36 @@
               templateUrl: "app/view/opcije/view-parametar.html",
               controller: "parametarCtrl"
           })
+          .state("mesta", {
+                url: "/mesta",
+                templateUrl: "app/view/sifarnik/view-mesta.html",
+                controller: "MestaCtrl"
+            })
+          .state("opstine", {
+                url: "/opstine",
+                templateUrl: "app/view/sifarnik/view-opstine.html",
+                controller: "OpstineCtrl"
+            })
+            .state("konstante", {
+                url: "/konstante",
+                templateUrl: "app/view/opcije/view-konstante.html",
+                controller: "KonstCtrl"
+            })
+            .state("fondsati", {
+                url: "/fondsati",
+                templateUrl: "app/view/opcije/view-fondsati.html",
+                controller: "FondSatiCtrl"
+            })
+            .state("radnik", {
+                url: "/radnik",
+                templateUrl: "app/view/opcije/view-radnik.html",
+                controller: "RadnikCtrl"
+            })
+            .state("zanimanja", {
+                url: "/zanimanja",
+                templateUrl: "app/view/sifarnik/view-zanimanja.html",
+                controller: "ZanimanjaCtrl"
+            })
             .state("/", {
               url: "/",
               templateUrl: "app/view/view-home.html",

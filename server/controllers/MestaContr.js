@@ -73,7 +73,7 @@ if (uid) {
           { success: false, message: 'Error processing request '+ err , data:[]});
       }
 
-      Mesta.find({_id:oMesto._id}).populate('Opstina',['RegOzn','Naziv']).exec(function(err, result){
+      Mesta.find({}).populate({path:'Opstina', populate:{path:'Drzava'}}).exec(function(err, result){
         if(err){ return res.status(400).json({ success: false, message:'Error processing request '+ err, data:[] }); 
         }
           return res.status(201).json({
@@ -101,14 +101,19 @@ if (uid) {
 module.exports.listmesta = function (req, res,next) {
   console.log("Usao u list Mesta");
   
-  Mesta.find({}).populate('Opstina',['RegOzn','Naziv']).exec(function(err, result){
+  //Mesta.find({}).populate('Opstina',['RegOzn','Naziv','Drzava']).populate('Drzava').exec(function(err, result){
+  Mesta.find({}).populate({path:'Opstina', populate:{path:'Drzava'}}).exec(function(err, result){
     if(err){ return res.status(400).json({ success: false, message:'Error processing request '+ err, data:[] }); 
     }
+
+    //console.log(result[0].Naziv + "  " + result[0].Opstina.Naziv + "   " +result[0].Opstina.Drzava.Naziv);
+      //return res.status(200).json( result);
+
       return res.status(200).json({
-      success: true,
-      message:'Successfully', 
-      data: result
-      });
+       success: true,
+       message:'Successfully', 
+       data: result
+       }); 
     });
 
 }

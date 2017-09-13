@@ -35,61 +35,34 @@ db.once('open', function() {
 });
 
 
-// mongoose.on('error', console.error.bind(console, 'connection error:'));
-// mongoose.once('open', function() {
-//   // we're connected!
-//   console.log("conect to mongose");
-// });
-
-
 // view engine setup
 app.set('views', './views');
 app.set('view engine', 'ejs');
 
 
 //use midleware
-//app.use(logger('dev'));
 
+//Morgan i web logovi
 var logDirectory = path.join(__dirname, 'log')
-
 // ensure log directory exists
 fs.existsSync(logDirectory) || fs.mkdirSync(logDirectory)
-
 // create a rotating write stream
 var accessLogStream = rfs('access.log', {
   interval: '1d', // rotate daily
   path: logDirectory
 })
-
 // setup the logger // Standard Apache combined log output. or use common Standard Apache common log output.
-app.use(morgan('combined', {stream: accessLogStream}))
-
-
+app.use(morgan('dev', {stream: accessLogStream}))
 
 
 // uncomment after placing your favicon in /public
 app.use(favicon(path.join(__dirname, '/client/favicon.ico')))
 app.use(bodyParser.json()); 
 app.use(bodyParser.urlencoded({ extended: true }));
-//app.use(methodOverride());
-// app.use(logErrors)
-// app.use(clientErrorHandler)
-// app.use(errorHandler)
+
 app.use(express.static(__dirname + '/client'));
-//app.use(express.static(__dirname + '/fonts'));
-// app.use(express.static(__dirname + '/server'));
 
-
-
-
-//use route
-
-// app.get('/', function(req, res) {
-//   //res.send('Hello World');
-//   // res.render('./client/index.html');
-//     res.sendFile(path.join(__dirname, 'client/index.html'));
-// });
-
+//Route in app
 app.get('/', function(req, res) {
      res.render('pages/index');
 });
@@ -118,68 +91,13 @@ app.use('/', [DrzaveRoute,PosaoRoute,ParamRoute,VlasnikRoute,ZadrugarRouter,
 
 
 
-//var ResourceDrzava = mongoose.model('Resource', DrzavaModel);
-// var resource =  Resource(app, '/api', 'drzave', DrzavaModel).get(
-//  {
-//    after: function(req, res, next) {
-// //      res.json(res);
-//   //    res.send(JSON);
-//       console.log("Get was just called!");
-//     }
-//   }).put().post().index();
-//console.log(resource.swagger());
 
-//  Resource(app, 'api/', 'drzave', DrzavaModel).get({
+//End Route
 
-//     after: function(req, res, next) {
-//         res.resource.item.title = 'I am changing!!';
-//         res.error = null;
-//         next();
-//     }
-
-//  });
-
-
-// app.get('/', function(req, res) {
-//   //res.send('Hello World');
-//   // res.render('./client/index.html');
-//     res.sendFile(path.join(__dirname, 'client/index.html'));
-// });
-
-// process.env.NODE_ENV = 'production';
-
-//  if (app.get('env') === 'development') {
-//   console.log("Koristicu error handler");
-//    app.use(errorHandler());
-// }
-
-//error
-// function logErrors (err, req, res, next) {
-//   console.error(err.stack);
-//   next(err);
-// }
-
-// function clientErrorHandler (err, req, res, next) {
-//   if (req.xhr) {
-//     res.status(500).send({ error: 'Something failed!' });
-//   } else {
-//     next(err);
-//   }
-// }
-
-//  function errorHandler (err, req, res, next) {
-//   console.error("errorHandler usao");
-//   res.status(500);
-//    //res.render('error', { error: err });
-//    res.render('error', {
-//               message: err.message,
-//               error: {}
-//           });
-//  }
 
 //process.env.NODE_ENV = 'production';
 //app.set('env','production');
-console.log(app.get('env'));
+//console.log(app.get('env'));
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
   var err = new Error('Not Found');
