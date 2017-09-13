@@ -32,14 +32,15 @@ if (uid) {
     }
       
     if(opstina) {
-      opstina.Drzava=Drzava ;
+      //opstina.Drzava=Drzava ;
       opstina.RegOzn=RegOzn ;
       opstina.Naziv = Naziv;
       opstina.SifPorez=SifPorez;
       opstina.KontBr=KontBr;
       opstina.PozivNaBr=PozivNaBr;
       opstina.Opis = Opis ;
-      opstina.NameUser = NameUser;
+      if(NameUser){opstina.NameUser = NameUser;}
+      
     }
     opstina.save(function(err,results) {
       if(err){ 
@@ -84,10 +85,9 @@ if (uid) {
       }
 
 
-      Opstina.find({_id:oOpstina._id}).populate('Drzava',['KodDrzave','Naziv']).exec(function(err, result){
+      Opstina.find({_id:oOpstina._id}).populate('Opstina',['KodDrzave','Naziv']).exec(function(err, result){
         if(err){ return res.status(400).json({ success: false, message:'Error processing request '+ err, data:[] }); 
         }
-       // console.log( "Hvatam ga " +  result.Drzava.Naziv);
           return res.status(201).json({
           success: true,
           message:'Opstina saved successfully', 
@@ -151,8 +151,6 @@ if (uid) {
 }
 }
 }
-
-
 
 module.exports.listopstine = function (req, res,next) {
   console.log("Usao u list Opstina");
