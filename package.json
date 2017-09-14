@@ -4,7 +4,7 @@
   "description": "Servis-server za aplikaciju zadruga",
   "main": "server.js",
   "scripts": {
-    "start": "nodemon server.js",
+    "start": "node server.js",
     "start_windows": "set NODE_ENV=production&&node server.js",
     "test": "echo \"Error: no test specified\" && exit 1",
     "dev": "nodemon server.js"
@@ -22,6 +22,9 @@
   "bugs": {
     "url": "https://github.com/derrad/zadruga.git/issues"
   },
+  "engines": {
+    "node": "6.10.2"
+  },
   "dependencies": {
     "body-parser": "^1.15.2",
     "debug": "^2.2.0",
@@ -31,6 +34,7 @@
     "mongoose-paginate": "^5.0.3",
     "mongoose-relationship": "^0.1.5",
     "morgan": "^1.7.0",
+    "please-wait": "0.0.5",
     "resourcejs": "^1.6.1",
     "rotating-file-stream": "^1.2.2",
     "serve-favicon": "^2.0.1"

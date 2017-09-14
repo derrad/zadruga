@@ -2,7 +2,36 @@
     <h1>{{title}}</h1>
 <div>
      <h4>There are {{Mesta.length}} mesta</h4>
-        <ul>
+
+     <div class="table-responsive">
+        <table class="table table-bordered">
+          <!-- On rows -->
+      <thead>
+        <th>ID</th>
+        <th>Ptt</th>
+        <th>Naziv</th>
+        <th>Opština</th>
+        <th>Država</th>
+        <th>User</th>
+      </thead>
+      <tbody>
+        <tr ng-repeat="item in Mesta">
+            <td> {{item._id}}</td>
+            <td> {{item.Ptt}}</td>
+            <td> {{item.Naziv}}</td>
+            <td>  {{item.Opstina.Naziv}}</td>
+            <td> {{item.Opstina.Drzava.Naziv}}</td>
+            <td> {{item.NameUser}}</td>
+
+        </tr>
+
+      </tbody>
+
+        </table>
+      </div>
+
+
+        <!-- <ul>
           <li ng-repeat="item in Mesta">
             {{item._id}} /\
             {{item.Naziv}} /\
@@ -10,7 +39,7 @@
             {{item.Opstina.Drzava.Naziv}} /\
           </li>
 
-        </ul>
+        </ul> -->
 </div>
 
 

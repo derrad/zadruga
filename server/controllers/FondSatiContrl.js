@@ -3,7 +3,6 @@ var FondSati = require('../models/sfFondSati');
 
 module.exports.create = function (req, res,next) {
   const uid = req.params.id ;
-
   const Mesec=req.body.Mesec || new Date().getMonth()+1;
   const Godina=req.body.Godina || new Date().getFullYear();
   const Sati = req.body.Sati;
@@ -12,87 +11,81 @@ module.exports.create = function (req, res,next) {
   const Opis = req.body.Opis ;
   const NameUser = req.body.NameUser || "TEST";
 
-  console.log("uid je :" + uid + " ovo je Mesec " + req.body.Mesec);
+//  console.log("uid je :" + uid + " ovo je Mesec " + req.body.Mesec);
+  if (!Sati || !Mesec || Godina ) {
+        return res.status(422).send({ success: false, message: 'Posted data is not correct or incompleted.', data:[] });
+  } 
+  else 
+  {
+    if (uid) {
+      //Edit Fond sati
+      FondSati.findById(uid).exec(function(err, fondsati){
+        if(err){ return res.status(400).json({ success: false, message: 'Error processing request '+ err, data:[] }); }
 
-  
-  if (!Sati  ) {
-      return res.status(422).send({ success: false, message: 'Posted data is not correct or incompleted.', data:[] });
-  } else {
-  
-if (uid) {
-  //Edit radnik
-  FondSati.findById(uid).exec(function(err, fondsati){
-    if(err){ 
-      return res.status(400).json({ success: false, message: 'Error processing request '+ err, data:[] }); 
-    }
-      
-    if(fondsati) {
-        fondsati.Mesec = Mesec ;
-        fondsati.Godina = Godina ;
-        fondsati.Sati = Sati;
-        fondsati.MinOsnov = MinOsnov ;
-        fondsati.MaxOsnov = MaxOsnov  ;
-        fondsati.Opis = Opis ;
-        fondsati.NameUser = NameUser;
-     
-    }
-    fondsati.save(function(err,results) {
-      if(err){ 
-        return res.status(400).json({ success: false, message: 'Error processing request '+ err, data:null }); 
-      }
-      return res.status(201).json({
-        success: true,
-        message: 'Fond Sati updated successfully',
-        data:results
+        if(fondsati) {
+            fondsati.Mesec = Mesec ;
+            fondsati.Godina = Godina ;
+            fondsati.Sati = Sati;
+            fondsati.MinOsnov = MinOsnov ;
+            fondsati.MaxOsnov = MaxOsnov  ;
+            fondsati.Opis = Opis ;
+            fondsati.NameUser = NameUser;
+        
+            fondsati.save(function(err,results) {
+                if(err){ return res.status(400).json({ success: false, message: 'Error processing request '+ err, data:[] }); }
+                  return res.status(201).json({
+                          success: true,
+                          message: 'Fond Sati updated successfully',
+                          data:results});
+                });
+        }
+          
       });
-    });
-  });
 
-}else{
-  
-  // Add new posao
-  let oFondSati = new FondSati({
-    Mesec : Mesec ,
-    Godina : Godina ,
-    Sati : Sati,
-    MinOsnov : MinOsnov ,
-    MaxOsnov : MaxOsnov  ,
-    Opis : Opis ,
-    NameUser : NameUser
-  });
+    }else{
+          
+          // Add new FondSati
+          let oFondSati = new FondSati({
+            Mesec : Mesec ,
+            Godina : Godina ,
+            Sati : Sati,
+            MinOsnov : MinOsnov ,
+            MaxOsnov : MaxOsnov  ,
+            Opis : Opis ,
+            NameUser : NameUser
+          });
 
-  oFondSati.save(function(err,result) {
-    if(err){ 
-     return  res.status(400).json(
-        { success: false, message: 'Error processing request '+ err , data:null});
-    }
-      
-   return res.status(201).json({
-      success: true,
-      message: 'Fond sati saved successfully',
-      data: result
+          oFondSati.save(function(err,result) {
+            if(err){  return res.status(400).json({ success: false, message: 'Error processing request '+ err , data:null});}
+              
+          return res.status(201).json({
+              success: true,
+              message: 'Fond sati saved successfully',
+              data: result
 
-    });
-  });
+            });
+          });
+    }//if (uid) and else n
 
-}
-}
-}
+  }// if (!Sati || !Mesec || Godina )
+
+}//module.exports.create
 
 
 
 module.exports.listfondsati = function (req, res,next) {
-  console.log("Usao u list fond sati");
-  
+ //console.log("Usao u list fond sati");
+
   FondSati.find({}).exec(function(err, result){
-    if(err){ return res.status(400).json({ success: false, message:'Error processing request '+ err, data:null }); 
-    }
-      return res.status(200).json({
-      success: true,
-      message:'Successfully', 
-      data: result
-      });
+    if(err){ return res.status(400).json({ success: false, message:'Error processing request '+ err, data:null });}
+
+    return res.status(200).json({
+    success: true,
+    message:'Successfully', 
+    data: result
     });
+
+  });
 
 }
 
