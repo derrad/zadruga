@@ -3,7 +3,35 @@
   <h1>{{title}}</h1>
 <div>
      <h4>There are {{Zanimanja.length}} zanimanja</h4>
-        <ul>
+
+     <div class="table-responsive">
+      <table class="table table-bordered">
+        <!-- On rows -->
+          <thead>
+            <th>ID</th>
+            <th>Sifra</th>
+            <th>Naziv</th>
+            <th>StepenSS</th>
+            <th>NivoUnosa</th>
+            <th>User</th>
+          </thead>
+          <tbody>
+            <tr ng-repeat="item in Zanimanja">
+                <td>{{item._id}}</td>
+                <td>{{item.Sifra}}</td>
+                <td>{{item.Naziv}}</td>
+                <td>{{item.StepenSS}}</td>
+                <td>{{item.NivoUnosa}}</td>
+                <td>{{item.NameUser}}</td>
+            </tr>
+          </tbody>
+      </table>
+    </div>
+
+
+
+
+        <!-- <ul>
           <li ng-repeat="item in Zanimanja">
             {{item._id}} /\
             {{item.Sifra}} /\
@@ -12,7 +40,7 @@
             {{item.NivoUnosa}} /\
           </li>
 
-        </ul>
+        </ul> -->
 </div>
 
 
