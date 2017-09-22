@@ -2,7 +2,34 @@
     <h1>{{title}}</h1>
 <div>
      <h4>There are {{Radnik.length}} Radnika</h4>
-        <ul>
+     <div class="table-responsive">
+      <table class="table table-bordered">
+        <!-- On rows -->
+          <thead>
+            <th>ID</th>
+            <th>Sifra</th>
+            <th>Ime</th>
+            <th>Prezime</th>
+            <th>Jmbg</th>
+            <th>Aktivan</th>
+          </thead>
+          <tbody>
+            <tr ng-repeat="item in Radnik">
+                <td>{{item._id}}</td>
+                <td>{{item.SifraRad}}</td>
+                <td>{{item.Ime}}</td>
+                <td>{{item.Prezime}}</td>
+                <td>{{item.Jmbg}}</td>
+                <td>{{item.Aktivan}}</td>
+            </tr>
+          </tbody>
+      </table>
+    </div>
+
+
+
+
+     <!-- <ul>
           <li ng-repeat="item in Radnik">
             {{item._id}} |
             {{item.SifraRad}} -
@@ -14,8 +41,12 @@
             
           </li>
 
-        </ul>
+        </ul> -->
 </div>
+
+
+
+
 
 
 </div>
