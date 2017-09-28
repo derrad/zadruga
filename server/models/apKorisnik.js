@@ -1,5 +1,5 @@
 var mongoose = require('mongoose');
-var mongoosePaginate = require('mongoose-paginate');
+//var mongoosePaginate = require('mongoose-paginate');
 
  var Schema = mongoose.Schema,
      ID  = Schema.ObjectId;
@@ -22,6 +22,6 @@ var apKorisnik = new Schema({
 }
 );
 
-apKorisnik.plugin(mongoosePaginate);
+//apKorisnik.plugin(mongoosePaginate);
 
-module.exports = mongoose.model('apKorisnik', apKorisnik);
+module.exports = mongoose.model('apKorisnik', apKorisnik,'apKorisnik');
