@@ -4,8 +4,6 @@ var mongoosePaginate = require('mongoose-paginate');
  var Schema = mongoose.Schema,
      ID  = Schema.ObjectId;
 
-
-
 var apKorisnik = new Schema({
    KorisnikIme : { type: String, required: [true, 'Korisnicko ime je obavezno !!!'] },
    Lozinka : {type: String, required: [true, 'Lozinka je obavezna !!!'] },
