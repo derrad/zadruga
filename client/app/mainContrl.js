@@ -2,15 +2,22 @@
     "use strict";
 
 angular.module("ZADRUGA.controllers", [])
-.controller("homeCtrl", ["$scope", "$rootScope", "appConfig",
-                     function ($scope, $rootScope, appConfig) {
-                   
+.controller("homeCtrl", ["$scope", "$rootScope", "appConfig","$timeout",
+                     function ($scope, $rootScope, appConfig, $timeout) {
+         
+    $scope.$on('$viewContentLoaded', function(event) {
+        $timeout(function() {
+            console.log("Kraj home kontroler");
+             window.loading_screen.finish();
+        },0);
+        });
+
         $scope.titleHome = "HOME";
 
 
 }])
-.controller("menuCtrl", ["$scope", "$rootScope", "appConfig",
-                     function ($scope, $rootScope, appConfig) {
+.controller("menuCtrl", ["$scope", "$rootScope", "appConfig","$timeout",
+                     function ($scope, $rootScope, appConfig,$timeout) {
      
 
  this.index = 0;
@@ -33,7 +40,7 @@ angular.module("ZADRUGA.controllers", [])
     }
 
 }])
-.controller("vlasnikCtrl", ["$scope", "$rootScope","$resource", function ($scope, $rootScope, $resource) {
+.controller("vlasnikCtrl", ["$scope", "$rootScope","$resource","$timeout", function ($scope, $rootScope, $resource,$timeout) {
 
    // var Vlasnik = $resource('/api/vlasnik');
   
@@ -54,6 +61,10 @@ angular.module("ZADRUGA.controllers", [])
                       }
                   }    
     }
+
+
+    
+
   );
 
   Vlasnik.query(function (results) {
@@ -107,9 +118,17 @@ angular.module("ZADRUGA.controllers", [])
 
         $scope.InitApp();
 
+            $scope.$on('$viewContentLoaded', function(event) {
+            $timeout(function() {
+                    window.loading_screen.finish();
+            },0);
+            });
+    
+
+
 
 }])
-.controller("posaoCtrl", ["$scope", "$rootScope","$resource", function ($scope, $rootScope, $resource) {
+.controller("posaoCtrl", ["$scope", "$rootScope","$resource","$timeout", function ($scope, $rootScope, $resource,$timeout) {
 
    // var Posao = $resource('/api/posao');
 
@@ -189,12 +208,19 @@ angular.module("ZADRUGA.controllers", [])
         }
 
     }
+
+    $scope.$on('$viewContentLoaded', function(event) {
+        $timeout(function() {
+                window.loading_screen.finish();
+        },0);
+        });
+
        
 
 
 
 }])
-.controller("drzaveCtrl", ["$scope", "$rootScope","$resource", function ($scope, $rootScope, $resource) {
+.controller("drzaveCtrl", ["$scope", "$rootScope","$resource","$timeout", function ($scope, $rootScope, $resource,$timeout) {
 
     var DRZAVA = $resource('/api/drzave');
   
@@ -263,10 +289,17 @@ angular.module("ZADRUGA.controllers", [])
     }
        
 
+    $scope.$on('$viewContentLoaded', function(event) {
+        $timeout(function() {
+                console.log("Kraj drzave kontrolera");
+                window.loading_screen.finish();
+        },0);
+        });
+
 
 
 }])
-.controller("FondSatiCtrl", ["$scope", "$rootScope","$resource", function ($scope, $rootScope, $resource) {
+.controller("FondSatiCtrl", ["$scope", "$rootScope","$resource","$timeout", function ($scope, $rootScope, $resource,$timeout) {
     
         $scope.FondSati = [];
         var FONDSATI = $resource('/api/fondsati', null,
@@ -288,8 +321,17 @@ angular.module("ZADRUGA.controllers", [])
            }); 
     
          $scope.title = "FOND SATI";
+
+         $scope.$on('$viewContentLoaded', function(event) {
+            $timeout(function() {
+                console.log("Kraj fond sati kontrolera");
+                    window.loading_screen.finish();
+            },0);
+            });
+
+
      }])
-.controller("KonstCtrl", ["$scope", "$rootScope","$resource", function ($scope, $rootScope, $resource) {
+.controller("KonstCtrl", ["$scope", "$rootScope","$resource","$timeout", function ($scope, $rootScope, $resource,$timeout) {
 
     $scope.Konst = [];
     var KONSTANTA = $resource('/api/konstanta', null,
@@ -311,8 +353,16 @@ angular.module("ZADRUGA.controllers", [])
        }); 
 
      $scope.title = "KONSTANTA";
+
+     $scope.$on('$viewContentLoaded', function(event) {
+        $timeout(function() {
+                window.loading_screen.finish();
+        },0);
+        });
+
+
  }])
- .controller("RadnikCtrl", ["$scope", "$rootScope","$resource", function ($scope, $rootScope, $resource) {
+ .controller("RadnikCtrl", ["$scope", "$rootScope","$resource","$timeout", function ($scope, $rootScope, $resource,$timeout) {
     
         $scope.Radnik = [];
         var RADNIK = $resource('/api/radnik/', null,
@@ -334,8 +384,14 @@ angular.module("ZADRUGA.controllers", [])
            }); 
     
          $scope.title = "RADNIK";
+         $scope.$on('$viewContentLoaded', function(event) {
+            $timeout(function() {
+                    window.loading_screen.finish();
+            },0);
+            });
+
   }])
-.controller("ZanimanjaCtrl", ["$scope", "$rootScope","$resource", function ($scope, $rootScope, $resource) {
+.controller("ZanimanjaCtrl", ["$scope", "$rootScope","$resource","$timeout", function ($scope, $rootScope, $resource,$timeout) {
     
         $scope.Zanimanja = [];
         var ZANIM = $resource('/api/zanimanja/', null,
@@ -357,8 +413,14 @@ angular.module("ZADRUGA.controllers", [])
            }); 
     
          $scope.title = "ZANIMANJA";
+         $scope.$on('$viewContentLoaded', function(event) {
+            $timeout(function() {
+                    window.loading_screen.finish();
+            },0);
+            });
+
 }])
- .controller("MestaCtrl", ["$scope", "$rootScope","$resource", function ($scope, $rootScope, $resource) {
+ .controller("MestaCtrl", ["$scope", "$rootScope","$resource","$timeout", function ($scope, $rootScope, $resource,$timeout) {
        var MESTA = $resource('/api/mesta', null,
           {
               'query':  {method:'GET', 
@@ -380,8 +442,15 @@ angular.module("ZADRUGA.controllers", [])
           }); 
 
         $scope.title = "Mesta";
+        $scope.$on('$viewContentLoaded', function(event) {
+            $timeout(function() {
+                console.log("Kraj mesta kontrolera");
+                    window.loading_screen.finish();
+            },0);
+            });
+
     }])
-    .controller("OpstineCtrl", ["$scope", "$rootScope","$resource", function ($scope, $rootScope, $resource) {
+    .controller("OpstineCtrl", ["$scope", "$rootScope","$resource","$timeout", function ($scope, $rootScope, $resource,$timeout) {
     
         var OPSTINE = $resource('/api/opstine', null,
            {
@@ -404,9 +473,16 @@ angular.module("ZADRUGA.controllers", [])
            }); 
  
          $scope.title = "OPSTINE";
+         $scope.$on('$viewContentLoaded', function(event) {
+            $timeout(function() {
+                console.log("Kraj opstine kontrolera");
+                    window.loading_screen.finish();
+            },0);
+            });
+
      }])
     //parametarCtrl
-.controller("parametarCtrl", ["$scope", "$rootScope","$resource", function ($scope, $rootScope, $resource) {
+.controller("parametarCtrl", ["$scope", "$rootScope","$resource","$timeout", function ($scope, $rootScope, $resource,$timeout) {
 
     var PARAMETAR = $resource('/api/parametar');
   
@@ -474,11 +550,16 @@ angular.module("ZADRUGA.controllers", [])
 
     }
        
+    $scope.$on('$viewContentLoaded', function(event) {
+        $timeout(function() {
+                window.loading_screen.finish();
+        },0);
+        });
 
 
 
 }])
-.controller("helpCtrl", ["$scope", "$rootScope", function ($scope, $rootScope) {
+.controller("helpCtrl", ["$scope", "$rootScope","$timeout", function ($scope, $rootScope,$timeout) {
 
         $scope.titleHelp = "HELP";
         $scope.titleContact = "CONTACT";
@@ -491,6 +572,13 @@ angular.module("ZADRUGA.controllers", [])
 
 
         $scope.InitApp();
+
+        $scope.$on('$viewContentLoaded', function(event) {
+            $timeout(function() {
+                    window.loading_screen.finish();
+            },0);
+            });
+
 
 
 }])
