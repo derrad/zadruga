@@ -37,7 +37,14 @@
     "please-wait": "0.0.5",
     "resourcejs": "^1.6.1",
     "rotating-file-stream": "^1.2.2",
-    "serve-favicon": "^2.0.1"
+    "serve-favicon": "^2.0.1",
+    "@reactivex/rxjs": "*", 
+    "bcryptjs": "*", 
+    "cors": "*",
+    "jsonwebtoken": "*", 
+    "passport": "*",
+    "passport-jwt": "*" 
+
   },
   "devDependencies": {
     "nodemon": "^1.11.0"

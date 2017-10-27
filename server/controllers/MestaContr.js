@@ -1,8 +1,14 @@
-var mongoose = require('mongoose');
-var Mesta = require('../models/sfMesta');
-var sfOpstina = require('../models/sfOpstine');
-var sfDrzava = require('../models/sfDrzave');
+const mongoose = require('mongoose');
+const Mesta = require('../models/sfMesta');
+const sfOpstina = require('../models/sfOpstine');
+const sfDrzava = require('../models/sfDrzave');
 
+const TypeA = require('../enum/serverenum');
+const SetActivity = require('./SetActivity');
+
+const TIP_TRANS_INSERT ="ADD MESTO";
+const TIP_TRANS_UPDATE ="CHANGES MESTO";
+const TIP_TRANS_DEL = "DELETE MESTO";
 
 
 module.exports.create = function (req, res,next) {
@@ -12,9 +18,9 @@ module.exports.create = function (req, res,next) {
   const Naziv = req.body.Naziv;
   const Ptt =req.body.Ptt;
   const Opis = req.body.Opis ;
-  const NameUser = req.body.NameUser || "TEST";
+  const NameUser = req.user.email || "System";
 
-  console.log("uid je :" + uid + " ovo je Opstina " + req.body.Opstina);
+  //console.log("uid je :" + uid + " ovo je Opstina " + req.body.Opstina);
 
   
   if (!Opstina || !Naziv ) {
@@ -39,6 +45,10 @@ if (uid) {
       if(err){ 
         return res.status(400).json({ success: false, message: 'Error processing request '+ err, data:[] }); 
       }
+      try{
+        SetActivity.AddActivity(TypeA.Activities[1], TIP_TRANS_UPDATE, uid, Naziv , NameUser)
+      } catch(ex){}      
+
       return res.status(201).json({
         success: true,
         message: 'Mesto updated successfully',
@@ -73,6 +83,10 @@ if (uid) {
           { success: false, message: 'Error processing request '+ err , data:[]});
       }
 
+      try{
+        SetActivity.AddActivity(TypeA.Activities[3], TIP_TRANS_INSERT, result._id, Naziv , NameUser)
+      } catch(ex){}
+
       Mesta.find({}).populate({path:'Opstina', populate:{path:'Drzava'}}).exec(function(err, result){
         if(err){ return res.status(400).json({ success: false, message:'Error processing request '+ err, data:[] }); 
         }
@@ -99,10 +113,11 @@ if (uid) {
 }
 
 module.exports.listmesta = function (req, res,next) {
-  console.log("Usao u list Mesta");
+ // console.log("Usao u list Mesta");
   
   //Mesta.find({}).populate('Opstina',['RegOzn','Naziv','Drzava']).populate('Drzava').exec(function(err, result){
-  Mesta.find({}).populate({path:'Opstina', populate:{path:'Drzava'}}).exec(function(err, result){
+    //.populate({path:'Opstina', populate:{path:'Drzava'}})
+  Mesta.find({}).sort({created_at:-1}).populate({path:'Opstina', populate:{path:'Drzava'}}).exec(function(err, result){
     if(err){ return res.status(400).json({ success: false, message:'Error processing request '+ err, data:[] }); 
     }
 
@@ -120,7 +135,7 @@ module.exports.listmesta = function (req, res,next) {
 
 
 module.exports.getomesta = function (req, res,next) {
-  console.log("Usao u get mesta parametar je  " + req.params.id);
+ // console.log("Usao u get mesta parametar je  " + req.params.id);
   Mesta.find({_id:req.params.id}).exec(function(err, result){
     if(err){ 
       return res.status(400).json(
@@ -137,10 +152,14 @@ module.exports.getomesta = function (req, res,next) {
 }
 
 module.exports.delemesta = function(req, res, next) {
-  console.log("delete Mesta parametar je : " + req.params.id);
+ // console.log("delete Mesta parametar je : " + req.params.id);
  // const uid = req.params.id || '1234';
  Mesta.remove({_id: req.params.id }, function(err){
         if(err){ return res.status(400).json({ success: false, message: 'Error processing request '+ err, data:[] }); }
+        try{
+          SetActivity.AddActivity(TypeA.Activities[5], TIP_TRANS_DEL, req.params.id, TypeA.Activities[5] + " Mesto" , req.user.email)
+          } catch(ex){}
+       
         return res.status(201).json({
             success: true,
             message: 'Mesta removed successfully',

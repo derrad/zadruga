@@ -1,9 +1,11 @@
 var mongoose = require('mongoose');
-//var mongoosePaginate = require('mongoose-paginate');
+var mongoosePaginate = require('mongoose-paginate');
 
  var Schema = mongoose.Schema,
      ID  = Schema.ObjectId;
-     
+
+
+
 var apKorisnik = new Schema({
    KorisnikIme : { type: String, required: [true, 'Korisnicko ime je obavezno !!!'] },
    Lozinka : {type: String, required: [true, 'Lozinka je obavezna !!!'] },
@@ -22,6 +24,6 @@ var apKorisnik = new Schema({
 }
 );
 
-//apKorisnik.plugin(mongoosePaginate);
+apKorisnik.plugin(mongoosePaginate);
 
-module.exports = mongoose.model('apKorisnik', apKorisnik,'apKorisnik');
+module.exports = mongoose.model('apKorisnik', apKorisnik);

@@ -1,0 +1,213 @@
+{
+    "Customer": {
+        "Taxable": true,
+        "BillAddr": {
+            "Id": "112",
+            "Line1": "123 Main Street",
+            "City": "Mountain View",
+            "Country": "USA",
+            "CountrySubDivisionCode": "CA",
+            "PostalCode": "94042"
+        },
+        "Notes": "Here are other details.",
+        "Job": false,
+        "BillWithParent": false,
+        "Balance": 0,
+        "BalanceWithJobs": 0,
+        "CurrencyRef": {
+            "value": "USD",
+            "name": "United States Dollar"
+        },
+        "PreferredDeliveryMethod": "Print",
+        "domain": "QBO",
+        "sparse": false,
+        "Id": "67",
+        "SyncToken": "0",
+        "MetaData": {
+            "CreateTime": "2015-07-23T10:58:12-07:00",
+            "LastUpdatedTime": "2015-07-23T10:58:12-07:00"
+        },
+        "Title": "Mr",
+        "GivenName": "James",
+        "MiddleName": "B",
+        "FamilyName": "King",
+        "Suffix": "Jr",
+        "FullyQualifiedName": "King's Groceries",
+        "CompanyName": "King Groceries",
+        "DisplayName": "King's Groceries",
+        "PrintOnCheckName": "King Groceries",
+        "Active": true,
+        "PrimaryPhone": {
+            "FreeFormNumber": "(555) 555-5555"
+        },
+        "PrimaryEmailAddr": {
+            "Address": "jdrew@myemail.com"
+        },
+        "DefaultTaxCodeRef": {
+            "value": "2"
+        }
+    },
+    "time": "2015-07-23T10:58:12.099-07:00"
+}
+
+SAMPLE OBJECT
+{
+    "Customer": {
+        "Taxable": false,
+        "BillAddr": {
+            "Id": "3",
+            "Line1": "12 Ocean Dr.",
+            "City": "Half Moon Bay",
+            "CountrySubDivisionCode": "CA",
+            "PostalCode": "94213",
+            "Lat": "37.4307072",
+            "Long": "-122.4295234"
+        },
+        "Job": false,
+        "BillWithParent": false,
+        "Balance": 85.0,
+        "BalanceWithJobs": 85.0,
+        "PreferredDeliveryMethod": "Print",
+        "domain": "QBO",
+        "sparse": false,
+        "Id": "2",
+        "SyncToken": "0",
+        "MetaData": {
+            "CreateTime": "2014-09-11T16:49:28-07:00",
+            "LastUpdatedTime": "2014-09-18T12:56:01-07:00"
+        },
+        "GivenName": "Bill",
+        "FamilyName": "Lucchini",
+        "FullyQualifiedName": "Bill's Windsurf Shop",
+        "CompanyName": "Bill's Windsurf Shop",
+        "DisplayName": "Bill's Windsurf Shop",
+        "PrintOnCheckName": "Bill's Windsurf Shop",
+        "Active": true,
+        "PrimaryPhone": {
+            "FreeFormNumber": "(415) 444-6538"
+        },
+        "PrimaryEmailAddr": {
+            "Address": "Surf@Intuit.com"
+        }
+    },
+    "time": "2015-07-23T11:04:15.496-07:00"
+}
+
+PhysicalAddress 
+{
+    "BillAddr": {
+        "Line1": "123 Main Street",
+        "City": "Mountain View",
+        "Country": "USA",
+        "CountrySubDivisionCode": "CA",
+        "PostalCode": "94042"
+    },
+    "Notes": "Here are other details.",
+    "Title": "Mr",
+    "GivenName": "James",
+    "MiddleName": "B",
+    "FamilyName": "King",
+    "Suffix": "Jr",
+    "FullyQualifiedName": "King Groceries",
+    "CompanyName": "King Groceries",
+    "DisplayName": "King's Groceries",
+    "PrimaryPhone": {
+        "FreeFormNumber": "(555) 555-5555"
+    },
+    "PrimaryEmailAddr": {
+        "Address": "jdrew@myemail.com"
+    }
+}
+
+SAMPLE RESPONSE
+{
+    "Customer": {
+        "Taxable": true,
+        "BillAddr": {
+            "Id": "112",
+            "Line1": "123 Main Street",
+            "City": "Mountain View",
+            "Country": "USA",
+            "CountrySubDivisionCode": "CA",
+            "PostalCode": "94042"
+        },
+        "Notes": "Here are other details.",
+        "Job": false,
+        "BillWithParent": false,
+        "Balance": 0,
+        "BalanceWithJobs": 0,
+        "CurrencyRef": {
+            "value": "USD",
+            "name": "United States Dollar"
+        },
+        "PreferredDeliveryMethod": "Print",
+        "domain": "QBO",
+        "sparse": false,
+        "Id": "67",
+        "SyncToken": "0",
+        "MetaData": {
+            "CreateTime": "2015-07-23T10:58:12-07:00",
+            "LastUpdatedTime": "2015-07-23T10:58:12-07:00"
+        },
+        "Title": "Mr",
+        "GivenName": "James",
+        "MiddleName": "B",
+        "FamilyName": "King",
+        "Suffix": "Jr",
+        "FullyQualifiedName": "King's Groceries",
+        "CompanyName": "King Groceries",
+        "DisplayName": "King's Groceries",
+        "PrintOnCheckName": "King Groceries",
+        "Active": true,
+        "PrimaryPhone": {
+            "FreeFormNumber": "(555) 555-5555"
+        },
+        "PrimaryEmailAddr": {
+            "Address": "jdrew@myemail.com"
+        },
+        "DefaultTaxCodeRef": {
+            "value": "2"
+        }
+    },
+    "time": "2015-07-23T10:58:12.099-07:00"
+}
+"Customer": {
+        "Taxable": false,
+        "BillAddr": {
+            "Id": "3",
+            "Line1": "12 Ocean Dr.",
+            "City": "Half Moon Bay",
+            "CountrySubDivisionCode": "CA",
+            "PostalCode": "94213",
+            "Lat": "37.4307072",
+            "Long": "-122.4295234"
+        },
+        "Job": false,
+        "BillWithParent": false,
+        "Balance": 85.0,
+        "BalanceWithJobs": 85.0,
+        "PreferredDeliveryMethod": "Print",
+        "domain": "QBO",
+        "sparse": false,
+        "Id": "2",
+        "SyncToken": "0",
+        "MetaData": {
+            "CreateTime": "2014-09-11T16:49:28-07:00",
+            "LastUpdatedTime": "2014-09-18T12:56:01-07:00"
+        },
+        "GivenName": "Bill",
+        "FamilyName": "Lucchini",
+        "FullyQualifiedName": "Bill's Windsurf Shop",
+        "CompanyName": "Bill's Windsurf Shop",
+        "DisplayName": "Bill's Windsurf Shop",
+        "PrintOnCheckName": "Bill's Windsurf Shop",
+        "Active": true,
+        "PrimaryPhone": {
+            "FreeFormNumber": "(415) 444-6538"
+        },
+        "PrimaryEmailAddr": {
+            "Address": "Surf@Intuit.com"
+        }
+    },
+    "time": "2015-07-23T11:04:15.496-07:00"
+}

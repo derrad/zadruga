@@ -1,5 +1,5 @@
-var mongoose = require('mongoose');
-var FondSati = require('../models/sfFondSati');
+const mongoose = require('mongoose');
+const FondSati = require('../models/sfFondSati');
 
 module.exports.create = function (req, res,next) {
   const uid = req.params.id ;
@@ -9,10 +9,11 @@ module.exports.create = function (req, res,next) {
   const MinOsnov =req.body.MinOsnov;
   const MaxOsnov=req.body.MaxOsnov;
   const Opis = req.body.Opis ;
-  const NameUser = req.body.NameUser || "TEST";
+  const NameUser = req.user.email || "System";
 
 //  console.log("uid je :" + uid + " ovo je Mesec " + req.body.Mesec);
-  if (!Sati || !Mesec || Godina ) {
+  // console.log("Sati :" + Sati + " ovo je Mesec " + Mesec + " ovo je godina" + Godina) ;
+  if (!Sati || !Mesec || !Godina ) {
         return res.status(422).send({ success: false, message: 'Posted data is not correct or incompleted.', data:[] });
   } 
   else 
@@ -56,7 +57,7 @@ module.exports.create = function (req, res,next) {
           });
 
           oFondSati.save(function(err,result) {
-            if(err){  return res.status(400).json({ success: false, message: 'Error processing request '+ err , data:null});}
+            if(err){  return res.status(400).json({ success: false, message: 'Error processing request '+ err , data:[]});}
               
           return res.status(201).json({
               success: true,
@@ -76,8 +77,9 @@ module.exports.create = function (req, res,next) {
 module.exports.listfondsati = function (req, res,next) {
  //console.log("Usao u list fond sati");
 
-  FondSati.find({}).exec(function(err, result){
-    if(err){ return res.status(400).json({ success: false, message:'Error processing request '+ err, data:null });}
+ //FondSati.find({}).sort({created_at:-1}).exec(function(err, result){
+  FondSati.find({}).sort({Godina:1,Mesec:1}).exec(function(err, result){
+    if(err){ return res.status(400).json({ success: false, message:'Error processing request '+ err, data:[] });}
 
     return res.status(200).json({
     success: true,
@@ -91,11 +93,11 @@ module.exports.listfondsati = function (req, res,next) {
 
 
 module.exports.getfondsati = function (req, res,next) {
-  console.log("Usao u get fond sati parametar je  " + req.params.id);
+  //console.log("Usao u get fond sati parametar je  " + req.params.id);
   FondSati.find({_id:req.params.id}).exec(function(err, result){
     if(err){ 
       return res.status(400).json(
-      { success: false, message:'Error processing request '+ err , data:null }
+      { success: false, message:'Error processing request '+ err , data:[] }
       ); 
     }
       return res.status(200).json({
@@ -108,10 +110,10 @@ module.exports.getfondsati = function (req, res,next) {
 }
 
 module.exports.delefondsati = function(req, res, next) {
-  console.log("delete fond sati parametar je : " + req.params.id);
+ // console.log("delete fond sati parametar je : " + req.params.id);
  // const uid = req.params.id || '1234';
  FondSati.remove({_id: req.params.id }, function(err){
-        if(err){ return res.status(400).json({ success: false, message: 'Error processing request '+ err, data:null }); }
+        if(err){ return res.status(400).json({ success: false, message: 'Error processing request '+ err, data:[] }); }
         return res.status(201).json({
             success: true,
             message: 'Fond sati removed successfully',
