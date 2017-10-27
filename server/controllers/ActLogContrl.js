@@ -1,5 +1,5 @@
 const mongoose = require('mongoose');
-const LogAct = require('../models/apActlog');
+const LogAct = require('../models/apActLog');
 
 
 module.exports.listaAct = function (req, res,next) {

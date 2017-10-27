@@ -84,7 +84,6 @@ const ZanimanjaRouter = require('./server/Route/ZanimanjaRouters');
 const RadnikRouter = require('./server/Route/RadnikRouters');
 const PartneriRouter = require('./server/Route/PartneriRouters');
 const OpstineRouter= require('./server/Route/OpstineRouters');
-//const MestaRouter= require('./server/Route/MestaRouters');
 const KonstantaRouter= require('./server/Route/KonstantaRouters');
 const FondSatiRouter= require('./server/Route/FondSatiRouters');
 const KorisnikRouter= require('./server/Route/KorisnikRouters');
@@ -101,9 +100,9 @@ app.use('/', [index,DrzaveRoute,PosaoRoute,ParamRoute,VlasnikRoute,ZadrugarRoute
 
 
 //Route in app
-app.get('/', function(req, res) {
-  res.render('pages/index');
-});
+// app.get('/', function(req, res) {
+//   res.render('pages/index');
+// });
 
 
 //End Route
