@@ -17,11 +17,8 @@ const app  = express();
 
 //use configure app
 mongoose.Promise = global.Promise;
-//mongoose.connect('mongodb://localhost:27017/zadruga'); 'ovo sam dodao jer je bilo upozorenje i nasao na kako se ispravlja
+//ovo sam dodao jer je bilo upozorenje i nasao na kako se ispravlja
 mongoose.connect(config.database,{ useMongoClient: true });
-//mongoose.connect('mongodb://pera:171296@ds153637.mlab.com:53637/omzadruga',{ useMongoClient: true }); 
-//
-//mongodb://<pera>:<171296>@ds153637.mlab.com:53637/omzadruga
 
 const db = mongoose.connection;
 db.on('error', console.error.bind(console, 'connection error:'));
@@ -60,13 +57,12 @@ require('./server/config/passport')(passport);
 app.use(express.static(path.join(__dirname, 'public')));
 
 //Route
-var index = require('./server/Route/index')
-app.use('/', index);
+var index = require('./server/Route/index');
+//app.use('/', index);
 
-
-const users = require('./server/Route/users')
-const DrzaveRoute = require('./server/Route/DrzaveRouters')
-const PosaoRoute = require('./server/Route/PosaoRouters')
+const users = require('./server/Route/users');
+const DrzaveRoute = require('./server/Route/DrzaveRouters');
+const PosaoRoute = require('./server/Route/PosaoRouters');
 const ParamRoute = require('./server/Route/ParamRouters');
 const VlasnikRoute = require('./server/Route/VlasnikRouters');
 const ZadrugarRouter = require('./server/Route/ZadrugarRouters');
@@ -84,12 +80,10 @@ const ActLogRouter= require('./server/Route/ActLogRouters');
 
 app.use('/users', users); 
 
-app.use('/', [DrzaveRoute,PosaoRoute,ParamRoute,VlasnikRoute,ZadrugarRouter,
+app.use('/', [index,DrzaveRoute,PosaoRoute,ParamRoute,VlasnikRoute,ZadrugarRouter,
               ZanimanjaRouter,RadnikRouter,PartneriRouter,OpstineRouter,MestaRouter,
               KonstantaRouter,FondSatiRouter,KorisnikRouter,MestaRouter,VezbeRouter,
-              ActLogRouter])
-
-
+              ActLogRouter]);
 //End Route
 
 
