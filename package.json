@@ -14,6 +14,9 @@
   ],
   "author": "derrad",
   "license": "MIT",
+  "engines": {
+    "node": "6.10.2"
+  },
   "dependencies": {
     "@reactivex/rxjs": "^5.5.2",
     "bcryptjs": "^2.4.3",

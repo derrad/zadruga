@@ -5,7 +5,7 @@ const cors            = require('cors');
 const passport        = require('passport');
 const mongoose        = require('mongoose');
 const config          = require('./server/config/database')
-const favicon         = require('serve-favicon');
+//const favicon         = require('serve-favicon');
 const morgan          = require('morgan');
 const path            = require('path');
 const rfs             = require('rotating-file-stream');
@@ -48,7 +48,8 @@ var accessLogStream = rfs('access.log', {
 // setup the logger // Standard Apache combined log output. or use common Standard Apache common log output.
 app.use(morgan('combined', {stream: accessLogStream}))
 
-app.use(favicon(path.join(__dirname, '/public/favicon.ico')))
+//app.use(favicon(path.join(__dirname, '/public/favicon.ico')))
+
 app.use(bodyParser.json()); 
 app.use(bodyParser.urlencoded({ extended: true }));
 // Passport Middleware

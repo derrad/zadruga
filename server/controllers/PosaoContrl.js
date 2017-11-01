@@ -17,16 +17,13 @@ module.exports.create = function (req, res,next) {
   const Sifra1 = req.body.Sifra1  ;
   const Opis = req.body.Opis ;
   const NameUser = req.user.email || "System";
- 
-  //console.log("uid je :" + uid + " ovo je Naziv " + req.body.Naziv);
- 
-  
+   
   if (!Naziv || !StepenSS ) {
       return res.status(422).send({ success: false, message: 'Posted data is not correct or incompleted.', data:[] });
   } else {
   
-if (uid) {
-  //Edit radnik
+  if (uid) {
+  
   Posao.findById(uid).exec(function(err, posao){
     if(err){ 
       return res.status(400).json({ success: false, message: 'Error processing request '+ err, data:[] }); 
@@ -144,20 +141,3 @@ module.exports.deleposao = function(req, res, next) {
 }
 
 
-// function AddActivity(tActivnost,tTrans,tNumber,topis, tuser){
-//   let oLogNew = new LogAct({
-//     TypeAct:tActivnost || TypeA.Activities[0], // ; Start,
-//     Transact:tTrans,
-//     TransactNumber:tNumber,
-//     Opis:topis,
-//     NameUser:tuser
-//   });
-//   LogAct.addLog(oLogNew, (err, logNew) => {
-//      if(err){
-//        console.log("Error add aktivnost");
-
-//      } else {
-//        console.log("add aktivnost successfully");
-//      }
-//   });
-// }
