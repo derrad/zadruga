@@ -1,5 +1,5 @@
 const mongoose = require('mongoose');
-const Posao = require('../models/sfPosao.js');
+const Posao = require('../models/sfPosao');
 const TypeA = require('../enum/serverenum');
 const SetActivity = require('./SetActivity');
 
