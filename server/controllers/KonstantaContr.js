@@ -1,6 +1,13 @@
 const mongoose = require('mongoose');
 const Konst = require('../models/sfKonstanta');
 
+const TypeA = require('../enum/serverenum');
+const SetActivity = require('./SetActivity');
+
+const TIP_TRANS_INSERT ="ADD KONSTANTA";
+const TIP_TRANS_UPDATE ="CHANGES KONSTANTA";
+const TIP_TRANS_DEL = "DELETE KONSTANTA";
+
 module.exports.create = function (req, res,next) {
   const uid = req.params.id ;
   const Datum = req.body.Datum || new Date();
@@ -23,20 +30,19 @@ module.exports.create = function (req, res,next) {
   const OsMaxOsDop = req.body.OsMaxOsDop  ;
   const Opis = req.body.Opis ;
   const NameUser = req.user.email || "System";
- // const radnik_id = req.body.radnik_id ;
 
-  console.log("uid je :" + uid + " ovo je datum " + req.body.Datum);
- // console.log("radnik_id je :" + radnik_id);
+ // console.log("uid je :" + uid + " ovo je datum " + req.body.Datum);
+
   
   if (!Datum  ) {
-      return res.status(422).send({ success: false, message: 'Posted data is not correct or incompleted.', data:null });
+      return res.status(422).send({ success: false, message: 'Posted data is not correct or incompleted.', data:[] });
   } else {
   
 if (uid) {
   //Edit radnik
   Konst.findById(uid).exec(function(err, konst){
     if(err){ 
-      return res.status(400).json({ success: false, message: 'Error processing request '+ err, data:null }); 
+      return res.status(400).json({ success: false, message: 'Error processing request '+ err, data:[] }); 
     }
       
     if(konst) {
@@ -64,8 +70,13 @@ if (uid) {
     }
     konst.save(function(err,results) {
       if(err){ 
-        return res.status(400).json({ success: false, message: 'Error processing request '+ err, data:null }); 
+        return res.status(400).json({ success: false, message: 'Error processing request '+ err, data:[] }); 
       }
+
+      try{
+        SetActivity.AddActivity(TypeA.Activities[1], TIP_TRANS_UPDATE, uid, "Update konstanta" , NameUser)
+      } catch(ex){}    
+
       return res.status(201).json({
         success: true,
         message: 'Konstante updated successfully',
@@ -103,9 +114,13 @@ if (uid) {
   oKonst.save(function(err,result) {
     if(err){ 
      return  res.status(400).json(
-        { success: false, message: 'Error processing request '+ err , data:null});
+        { success: false, message: 'Error processing request '+ err , data:[]});
     }
-      
+    
+    try{
+      SetActivity.AddActivity(TypeA.Activities[3], TIP_TRANS_INSERT, result._id, "Konstanta insert" , NameUser)
+    } catch(ex){}
+
    return res.status(201).json({
       success: true,
       message: 'Konstante saved successfully',
@@ -124,7 +139,7 @@ module.exports.listkonst = function (req, res,next) {
  // console.log("Usao u list konstante");
   
   Konst.find({}).sort({created_at:-1}).exec(function(err, result){
-    if(err){ return res.status(400).json({ success: false, message:'Error processing request '+ err, data:null }); 
+    if(err){ return res.status(400).json({ success: false, message:'Error processing request '+ err, data:[] }); 
     }
       return res.status(200).json({
       success: true,
@@ -137,11 +152,11 @@ module.exports.listkonst = function (req, res,next) {
 
 
 module.exports.getkonst = function (req, res,next) {
-  console.log("Usao u get konstante parametar je  " + req.params.id);
+ // console.log("Usao u get konstante parametar je  " + req.params.id);
   Konst.find({_id:req.params.id}).exec(function(err, result){
     if(err){ 
       return res.status(400).json(
-      { success: false, message:'Error processing request '+ err , data:null }
+      { success: false, message:'Error processing request '+ err , data:[] }
       ); 
     }
       return res.status(200).json({
@@ -154,10 +169,14 @@ module.exports.getkonst = function (req, res,next) {
 }
 
 module.exports.delekonst = function(req, res, next) {
-  console.log("delete konstante parametar je : " + req.params.id);
+//  console.log("delete konstante parametar je : " + req.params.id);
  // const uid = req.params.id || '1234';
 	Konst.remove({_id: req.params.id }, function(err){
-        if(err){ return res.status(400).json({ success: false, message: 'Error processing request '+ err, data:null }); }
+        if(err){ return res.status(400).json({ success: false, message: 'Error processing request '+ err, data:[] }); }
+        try{
+          SetActivity.AddActivity(TypeA.Activities[5], TIP_TRANS_DEL, req.params.id, TypeA.Activities[5] + " Konstanta" , req.user.email)
+          } catch(ex){}
+
         return res.status(201).json({
             success: true,
             message: 'Konstante removed successfully',

@@ -24,15 +24,12 @@ var apActLog = new Schema({
 
 );
 
-
 module.exports = mongoose.model('apActLog', apActLog,'apActLog'); 
 
 module.exports.addLog = function(newLog, callback){
            newLog.save(callback);
 }
-
-
-
+    
 
 // module.exports.AddActivity = function (tActivnost,tTrans, tNumber,topis, tuser){
 //     let oLog = new apActLog({

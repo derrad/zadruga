@@ -1,22 +1,19 @@
 'use strict';
-//Server za zadrugu nodejs
-const express = require('express');
-const bodyParser = require('body-parser');
-const cors = require('cors');
-const passport = require('passport');
-const mongoose = require('mongoose');
-const config = require('./server/config/database')
-const favicon  = require('serve-favicon');
-const morgan = require('morgan');
-const path = require('path');
-const rfs = require('rotating-file-stream');
-const fs = require('fs');
-
-
+const express         = require('express');
+const bodyParser      = require('body-parser');
+const cors            = require('cors');
+const passport        = require('passport');
+const mongoose        = require('mongoose');
+const config          = require('./server/config/database')
+const favicon         = require('serve-favicon');
+const morgan          = require('morgan');
+const path            = require('path');
+const rfs             = require('rotating-file-stream');
+const fs              = require('fs');
 
 
 // express initialize
-const app = express();
+const app  = express();
 
 //use configure app
 mongoose.Promise = global.Promise;
@@ -33,48 +30,40 @@ db.once('open', function() {
   console.log("conect to mongose");
 });
 
-
 // view engine setup
 app.set('views', './views');
 app.set('view engine', 'ejs');
 app.engine('html', require('ejs').renderFile);
 
 //use midleware
-
 //Morgan i web logovi
-const logDirectory = path.join(__dirname, 'log')
+var logDirectory = path.join(__dirname, 'log')
 // ensure log directory exists
 fs.existsSync(logDirectory) || fs.mkdirSync(logDirectory)
 // create a rotating write stream
-const accessLogStream = rfs('access.log', {
+var accessLogStream = rfs('access.log', {
   interval: '1d', // rotate daily
   path: logDirectory
 })
-// setup the logger // Standard Apache combined log output. or use common Standard Apache common log output. dev
-app.use(morgan('common', {stream: accessLogStream}))
-
-app.use(cors()); // CORS Middleware 
-// uncomment after placing your favicon in /public
+// setup the logger // Standard Apache combined log output. or use common Standard Apache common log output.
+app.use(morgan('combined', {stream: accessLogStream}))
 
 app.use(favicon(path.join(__dirname, '/public/favicon.ico')))
 app.use(bodyParser.json()); 
 app.use(bodyParser.urlencoded({ extended: true }));
 // Passport Middleware
-
-
 app.use(passport.initialize());
 app.use(passport.session()); 
 require('./server/config/passport')(passport);
 
-//app.use(express.static(__dirname + '/public'));
 app.use(express.static(path.join(__dirname, 'public')));
 
-
-
 //Route
-const users = require('./server/Route/users')
-const index = require('./server/Route/index')
+var index = require('./server/Route/index')
+app.use('/', index);
 
+
+const users = require('./server/Route/users')
 const DrzaveRoute = require('./server/Route/DrzaveRouters')
 const PosaoRoute = require('./server/Route/PosaoRouters')
 const ParamRoute = require('./server/Route/ParamRouters');
@@ -84,6 +73,7 @@ const ZanimanjaRouter = require('./server/Route/ZanimanjaRouters');
 const RadnikRouter = require('./server/Route/RadnikRouters');
 const PartneriRouter = require('./server/Route/PartneriRouters');
 const OpstineRouter= require('./server/Route/OpstineRouters');
+//const MestaRouter= require('./server/Route/MestaRouters');
 const KonstantaRouter= require('./server/Route/KonstantaRouters');
 const FondSatiRouter= require('./server/Route/FondSatiRouters');
 const KorisnikRouter= require('./server/Route/KorisnikRouters');
@@ -93,25 +83,15 @@ const ActLogRouter= require('./server/Route/ActLogRouters');
 
 app.use('/users', users); 
 
-app.use('/', [index,DrzaveRoute,PosaoRoute,ParamRoute,VlasnikRoute,ZadrugarRouter,
+app.use('/', [DrzaveRoute,PosaoRoute,ParamRoute,VlasnikRoute,ZadrugarRouter,
               ZanimanjaRouter,RadnikRouter,PartneriRouter,OpstineRouter,MestaRouter,
               KonstantaRouter,FondSatiRouter,KorisnikRouter,MestaRouter,VezbeRouter,
               ActLogRouter])
 
 
-//Route in app
-// app.get('/', function(req, res) {
-//   res.render('pages/index');
-// });
-
-
 //End Route
 
 
-//process.env.NODE_ENV = 'production';
-//app.set('env','production');
-//console.log(app.get('env'));
-// catch 404 and forward to error handler
 app.use(function (req, res, next) {
   var err = new Error('Not Found');
   err.status = 404;
