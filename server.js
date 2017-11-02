@@ -55,9 +55,9 @@ var ParamController = require('./server/controllers/apParametarContrl');
 app.get('/api/parametar', ParamController.list);
 app.post('/api/parametar', ParamController.create);
 
-var Activ = require('./server/controllers/Activ');
+// var Activ = require('./server/controllers/Activ');
 
-app.get('/api/activities', Activ.lista);
+// app.get('/api/activities', Activ.lista);
 
 
 

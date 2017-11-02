@@ -1,9 +1,10 @@
 const mongoose = require('mongoose');
-const LogAct = require('../models/apActlog');
+var UserLog = require('../models/UserLog');
+//var Parametar = require('../models/apParametar');
 
 module.exports.lista = function (req, res) {
     //console.log("Usao u list Radnik - tu sam");
-    LogAct.find({}).sort({created_at:-1}).exec(function(err, result){
+    UserLog.find({}).sort({created_at:-1}).exec(function(err, result){
      // res.json(result);
         if(err){ 
           res.statusMessage = err;
