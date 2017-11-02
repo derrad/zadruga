@@ -1,5 +1,4 @@
 var mongoose = require('mongoose');
-var mongoosePaginate = require('mongoose-paginate');
 var Schema = mongoose.Schema,
      ID  = Schema.ObjectId;
 
@@ -36,11 +35,9 @@ var sfKonstanta = new Schema({
 
 sfKonstanta.pre('save', function(next) {
    // do stuff
-   console.log("sfKonstanta PRE SAVE");
+   console.log("PRE SAVE");
    next();
  });
-
-sfKonstanta.plugin(mongoosePaginate);
 
 var collectionName = 'sfKonstanta';
 

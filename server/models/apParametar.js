@@ -1,24 +1,12 @@
-const mongoose = require('mongoose');
-const mongoosePaginate = require('mongoose-paginate');
+var mongoose = require('mongoose');
 
- const Schema = mongoose.Schema ; 
- //,//  ID  = Schema.ObjectId;
+ var Schema = mongoose.Schema,
+     ID  = Schema.ObjectId;
 
 
-const apParametar = new Schema({
-   Naziv : { type: String, 
-                required: [true, 'Naziv je obavezan !!!'],
-                uppercase: true,
-                unique: true,
-                trim: true, 
-                match : [
-                        new RegExp('^[a-z0-9_-]+$', 'i'),
-                        '{PATH} \'{VALUE}\' is not valid. Use only letters, numbers, underscore.'
-                        ],
-                minlength:[3,"Minimalna duzina 3 karaktera"],
-                maxlength:[25,"Maksimalna duzina 25 karaktera"]
-   },
-   Koristi: {type:Boolean, default:false},
+var apParametar = new Schema({
+   Naziv : { type: String, required: [true, 'Naziv je obavezan !!!'] },
+   Koristi: {type:Boolean, default:true},
    VredString: {type: String },
    VredNumeric:{type:Number,default:0},
    Opis  :{ type: String },
@@ -30,8 +18,13 @@ const apParametar = new Schema({
 { 
     retainKeyOrder: true 
  }
- );
+ //,
+// {
+//     collection : 'apParametar'
+// }
+);
+//apParametar.set('collection', 'apParametar');
 
+var collectionName = 'apParametar';
 
-apParametar.plugin(mongoosePaginate);
-module.exports = mongoose.model('apParametar', apParametar,'apParametar');
+module.exports = mongoose.model('apParametar', apParametar,collectionName);

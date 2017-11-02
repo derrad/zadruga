@@ -1,37 +1,37 @@
 {
-  "name": "exit",
+  "name": "zadruga",
   "version": "1.0.0",
-  "description": "Proba",
+  "description": "Servis-server za aplikaciju zadruga",
   "main": "server.js",
   "scripts": {
+    "start": "nodemon server.js",
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node server.js",
     "dev": "nodemon server.js"
   },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/derrad/zadruga.git"
+  },
   "keywords": [
-    "Test",
-    "angular2"
+    "Omladinske",
+    "zadruge"
   ],
   "author": "derrad",
   "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/derrad/zadruga.git/issues"
+  },
   "engines": {
     "node": "6.10.2"
-  },
+  }, 
   "dependencies": {
-    "@reactivex/rxjs": "^5.5.2",
-    "bcryptjs": "^2.4.3",
     "body-parser": "^1.15.2",
-    "cors": "^2.8.4",
     "ejs": "^2.5.2",
-    "express": "^4.8.0",
-    "jsonwebtoken": "^8.1.0",
-    "mongoose": "^4.12.5",
-    "mongoose-paginate": "^5.0.3",
-    "morgan": "^1.7.0",
-    "passport": "^0.4.0",
-    "passport-jwt": "^3.0.1",
-    "rotating-file-stream": "^1.2.2",
-    "serve-favicon": "^2.0.1"
+    "express": "^4.14.0",
+    "mongoose": "^4.11.8",
+    "mongoose-relationship": "^0.1.5",
+    "resourcejs": "^1.6.1",
+    "serve-favicon": "^2.4.5"
   },
   "devDependencies": {
     "nodemon": "^1.11.0"

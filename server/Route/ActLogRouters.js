@@ -10,4 +10,4 @@ router.get('/api/activities',ActLogController.listaAct);
 // router.delete('/api/radnik/:id',passport.authenticate('jwt', {session:false}), RadnikController.deleradnik);
 
 
-module.exports = router
+module.exports = router;

@@ -1,0 +1,56 @@
+<!-- <div ng-controller="ActivCtrl">
+
+
+<div>
+     <h4>There are {{PODACI.length}} aktivnosti</h4>
+        <ul>
+          <li ng-repeat="item in PODACI">
+            {{item.Datum}}
+            {{item.NameUser}}
+            {{item.TypeAct}}
+            {{item.Transact}}
+            {{item.TransactNumber}}
+            {{item.Opis}}
+          </li>
+
+        </ul>
+</div>
+
+
+</div> -->
+
+
+<div ngcontroller="ActivCtrl">
+  <h1>{{title}}</h1>
+<div>
+   <h4>There are {{PODACI.length}} activities</h4>
+   <div class="tableresponsive">
+    <table class="table tablebordered">
+        <thead>
+          <!-- <th>ID</th> -->
+          <th>Datum</th>
+          <th>NameUser</th>
+          <th>TypeAct</th>
+          <th>Transact</th>
+          <th>TransactNumber</th>
+          <th>Opis</th>
+        </thead>
+        <tbody>
+          <tr ng-repeat="item in PODACI">
+              <!-- <td>{{item._id}}</td> -->
+              <td>{{item.Datum}}</td>
+              <td>{{item.NameUser }}</td>
+              <td>{{item.TypeAct}}</td>
+              <td>{{item.Transact}}</td>
+              <td>{{item.TransactNumber}}</td>
+              <td>{{item.Opis}} </td>
+          </tr>
+        </tbody>
+    </table>
+  </div>
+</div>
+
+
+</div>
+
+

@@ -1,0 +1,47 @@
+<div ng-controller="posaoCtrl">
+
+    <h4>There are {{posao.length}} poslova</h4>
+
+
+
+<div class="tableresponsive">
+    <table class="table tablebordered">
+        <thead>
+          <th>ID</th> 
+          <th>Naziv</th>
+          <th>StepenSS</th>
+          <th>Skola</th>
+          <th>Sifra</th>
+          <th>NameUser</th>
+          <th>Opis</th>
+        </thead>
+        <tbody>
+          <tr ng-repeat="item in posao">
+              <td>{{item._id}}</td>
+              <td>{{item.Naziv}}</td>
+              <td>{{item.StepenSS}}</td>
+              <td>{{item.Skola}}</td>
+              <td>{{item.Sifra}}</td>
+              <td>{{item.NameUser }}</td>
+              <td>{{item.Opis}} </td>
+          </tr>
+        </tbody>
+    </table>
+</div>
+
+
+<!-- <div>
+     <h4>There are {{posao.length}} poslova</h4>
+        <ul>
+          <li ng-repeat="item in posao">
+            {{item.Naziv}}
+            {{item.StepenSS}}
+          </li>
+
+        </ul>
+</div> -->
+
+
+</div>
+
+
