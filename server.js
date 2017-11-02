@@ -57,7 +57,8 @@ app.post('/api/parametar', ParamController.create);
 
 // var Activ = require('./server/controllers/Activ');
 
-// app.get('/api/activities', Activ.lista);
+var LogControler  = require('./server/controllers/Logovi');
+app.get('/api/activities', LogControler.lista);
 
 
 
