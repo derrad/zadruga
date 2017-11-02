@@ -3,7 +3,7 @@ const express           = require('express');
 const app               = express();
 const bodyParser        = require('body-parser');
 const mongoose          = require('mongoose');
-//const favicon           = require('serve-favicon');    
+const favicon           = require('serve-favicon');    
 const config            = require('./server/config/database')
 const path              = require('path');
 const Resource          = require('resourcejs');
@@ -30,7 +30,7 @@ app.use(bodyParser.json()); ;
 app.use(express.static(path.join(__dirname,'/client')));
 app.set('view engine', 'ejs');
 
-//app.use(favicon(path.join(__dirname, '/client/favicon.ico')))
+app.use(favicon(path.join(__dirname, '/client/favicon.ico')));
 
 //use route
 app.get('/', function(req, res) {
