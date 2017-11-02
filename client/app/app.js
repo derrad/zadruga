@@ -19,11 +19,11 @@
               templateUrl: "app/view/view-contact.html",
               controller: "helpCtrl"
           })
-          .state("vlasnik", {
-              url: "/vlasnik",
-              templateUrl: "app/view/opcije/view-vlasnik.html",
-              controller: "vlasnikCtrl"
-          })
+        //   .state("vlasnik", {
+        //       url: "/vlasnik",
+        //       templateUrl: "app/view/opcije/view-vlasnik.html",
+        //       controller: "vlasnikCtrl"
+        //   })
           .state("posao", {
               url: "/posao",
               templateUrl: "app/view/sifarnik/view-posao.html",

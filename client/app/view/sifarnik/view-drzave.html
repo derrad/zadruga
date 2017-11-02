@@ -1,151 +1,32 @@
 <div ng-controller="drzaveCtrl">
 
 
+<h4>There are {{drzave.length}} drzava</h4>
 
-<div class="panel panel-default">
-    <div class="panel-heading">
-        <h3>ADD DRZAVU</h3>
-
-    </div>
-<div class="panel-body panel-info ">
-  
-    <form role="form" ng-submit="createDrzavu()">
-        <div class="form-group">
-            <label class="control-label col-md-2" for="KodDrzave">Kod Drzave</label>
-            <div class="col-md-10">
-                <input class="form-control" 
-                id="KodDrzave" name="KodDrzave" type="text" ng-model="KodDrzave" />
-            
-            </div>
-        </div>
-
-        <div class="form-group">
-            <label class="control-label col-md-2" for="Naziv">Naziv</label>
-            <div class="col-md-10">
-                <input class="form-control" 
-                data-val="true" 
-                data-val-length="Field Naziv min 2 character and  max 50 !" 
-                data-val-length-max="50" 
-                data-val-length-min="2" 
-                data-val-required="Naziv invalid data  !!!" 
-                id="Naziv" 
-                name="Naziv" 
-                type="text" 
-                ng-model="Naziv">
-                
-            </div>
-        </div>
-   
-
-        
-
- 
-    <div class="form-group">
-        <label class="control-label col-md-2" for="Opis">Opis </label>
-        <div class="col-md-10">
-            <textarea class="form-control" cols="20" id="Opis" name="Opis" rows="2" ng-model="Opis">
-            </textarea>
-            
-        </div>
-    </div>
-
-    <div class="form-group">
-        <div class="col-md-offset-2 col-md-10">
-        <button  ladda="loginLoading" 
-                 id="btnCreateForm" type="submit" 
-                 class="btn btn-default" 
-                 title='Create data'>
-             <!--<span class="ladda-label"></span> data-spinner-color="#000000" -->
-            <span class="glyphicon glyphicon-save"></span>
-            Create
-        </button>
-
-        </div>
-    </div>
-</form> 
-
-</div>
-
+<div class="tableresponsive">
+    <table class="table tablebordered">
+        <thead>
+          <th>ID</th> 
+          <th>KodDrzave</th>
+          <th>Naziv</th>
+         <th>NameUser</th>
+          <th>Opis</th>
+        </thead>
+        <tbody>
+          <tr ng-repeat="item in drzave">
+              <td>{{item._id}}</td>
+              <td>{{item.KodDrzave}}</td>
+              <td>{{item.Naziv}}</td>
+              <td>{{item.NameUser }}</td>
+              <td>{{item.Opis}} </td>
+          </tr>
+        </tbody>
+    </table>
 </div>
 
 
 
-<div>
-     <h4>There are {{drzave.length}} drzava</h4>
-        <ul>
-          <li ng-repeat="item in drzave">
-            {{item.Naziv}}
-            {{item.KodDrzave}}
-          </li>
-
-        </ul>
-</div>
-
 
 </div>
 
-<!--<div class="panel-body panel-info ">
-<form role="form">
-        
-    <div class="form-group">
-        <label class="control-label col-md-2" for="Naziv">Naziv</label>
-        <div class="col-md-10">
-            <input class="form-control" 
-            data-val="true" 
-            data-val-length="Field Naziv min 2 character and  max 50 !" 
-            data-val-length-max="50" 
-            data-val-length-min="2" 
-            data-val-required="Naziv invalid data  !!!" 
-            id="Naziv" 
-            name="Naziv" 
-            type="text" 
-            ng-model="Naziv">
-            
-        </div>
-    </div>
-
-    <div class="form-group">
-        <label class="control-label col-md-2" for="Skola">Skola</label>
-        <div class="col-md-2">
-            <input class="form-control" 
-            id="Skola" name="Skola" type="text" ng-model="Skola" />
-        
-        </div>
-    </div>
-    <div class="form-group">
-        <label class="control-label col-md-2" for="Sifra">Sifra</label>
-        <div class="col-md-2">
-            <input class="form-control" 
-            id="Sifra" name="Sifra" type="text" ng-model="Sifra" />
-        
-        </div>
-    </div>
-    <div class="form-group">
-        <label class="control-label col-md-2" for="Sifra1">Sifra1</label>
-        <div class="col-md-2">
-            <input class="form-control" 
-            id="Sifra1" name="Sifra1" type="text" ng-model="Sifra1" />
-        
-        </div>
-    </div>
-    <div class="form-group">
-        <label class="control-label col-md-2" for="Opis">Opis </label>
-        <div class="col-md-10">
-            <textarea class="form-control" cols="20" id="Opis" name="Opis" rows="2" ng-model="Opis">
-            </textarea>
-            
-        </div>
-    </div>
-
-    <div class="form-group">
-        <div class="col-md-offset-2 col-md-10">
-        <button id="btnCreateForm" type="submit" class="btn btn-default" title='Create data'><span class="glyphicon glyphicon-save"></span>Create
-        </button>
-
-        </div>
-    </div>
-</form> 
-</div>
-
-</div>-->
 
