@@ -28,6 +28,7 @@ db.once('open', function() {
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json()); ;
 app.use(express.static(path.join(__dirname,'/client')));
+app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
 
 app.use(favicon(path.join(__dirname, '/client/favicon.ico')));
