@@ -26,14 +26,16 @@
   }, 
   "dependencies": {
     "body-parser": "^1.15.2",
+    "compression": "^1.7.1",
     "ejs": "^2.5.2",
     "express": "^4.14.0",
+    "helmet": "^3.9.0",
     "mongoose": "^4.11.8",
-    "mongoose-relationship": "^0.1.5",
     "resourcejs": "^1.6.1",
     "serve-favicon": "^2.4.5"
   },
   "devDependencies": {
+    "eslint": "^4.10.0",
     "nodemon": "^1.11.0"
   }
 }

@@ -7,6 +7,8 @@ const favicon           = require('serve-favicon');
 const config            = require('./server/config/database')
 const path              = require('path');
 const Resource          = require('resourcejs');
+const helmet = require('helmet');
+const compression = require('compression');
 
 //use configure app
 mongoose.Promise = global.Promise;
@@ -33,6 +35,9 @@ app.set('view engine', 'ejs');
 
 app.use(favicon(path.join(__dirname, '/client/favicon.ico')));
 
+app.use(helmet());
+// compress all responses
+app.use(compression());
 //use route
 app.get('/', function(req, res) {
     res.render('pages/index');
