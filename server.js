@@ -9,6 +9,7 @@ const path              = require('path');
 const Resource          = require('resourcejs');
 const helmet = require('helmet');
 const compression = require('compression');
+const cors = require('cors');
 
 //use configure app
 mongoose.Promise = global.Promise;
@@ -32,6 +33,9 @@ app.use(bodyParser.json()); ;
 app.use(express.static(path.join(__dirname,'/client')));
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
+
+
+app.use(cors()); // CORS Middleware 
 
 app.use(favicon(path.join(__dirname, '/client/favicon.ico')));
 
